@@ -1,0 +1,3841 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#171013">
+    <meta name="description" content="NO SIGNAL — вымышленный андеграундный фестиваль брейккора, джангла и IDM.">
+    <title>NO SIGNAL — Отключись от реальности</title>
+    <style>
+        :root {
+            --mint: #91E9DF;
+            --pale: #E0F7EC;
+            --red: #A00A17;
+            --dark: #171013;
+            --line: rgba(224, 247, 236, .25)
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 85px
+        }
+
+        body {
+            margin: 0;
+            background: var(--dark);
+            color: var(--pale);
+            font-family: Arial, Helvetica, sans-serif
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        button {
+            font: inherit
+        }
+
+        ::selection {
+            background: var(--mint);
+            color: var(--dark)
+        }
+
+        .container {
+            width: min(1240px, calc(100% - 48px));
+            margin: auto
+        }
+
+        .mono {
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            letter-spacing: .1em;
+            text-transform: uppercase
+        }
+
+        .top {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: rgba(23, 16, 19, .94);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--line)
+        }
+
+        .nav {
+            height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 1000;
+            letter-spacing: -.09em;
+            line-height: .8
+        }
+
+        .logo span {
+            display: block;
+            color: var(--mint);
+            font-size: 9px;
+            letter-spacing: .27em;
+            margin-top: 8px
+        }
+
+        .links {
+            display: flex;
+            gap: 26px;
+            align-items: center
+        }
+
+        .links a {
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: .08em
+        }
+
+        .links a:hover,
+        .social a:hover {
+            color: var(--mint)
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            color: var(--pale);
+            border: 1px solid var(--line);
+            padding: 10px 14px;
+            cursor: pointer
+        }
+
+        .hero {
+            position: relative;
+            min-height: 760px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background: var(--mint);
+            color: var(--dark)
+        }
+
+        .hero:before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none
+        }
+
+        .hero:after {
+            content: '// 0011010100 / СИГНАЛ ПРИНЯТ / 01010110 //';
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            writing-mode: vertical-rl;
+            white-space: nowrap;
+            pointer-events: none;
+            font: 12px 'Courier New', monospace;
+            letter-spacing: .6em;
+            opacity: .5
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 110px 0 105px
+        }
+
+        .eyebrow {
+            display: flex;
+            gap: 15px;
+            align-items: center
+        }
+
+        .eyebrow:before {
+            content: '';
+            width: 35px;
+            height: 2px;
+            background: var(--red)
+        }
+
+        h1 {
+            font-size: clamp(92px, 19vw, 290px);
+            line-height: .78;
+            letter-spacing: -.105em;
+            margin: 60px 0 45px;
+            font-weight: 1000;
+            max-width: 1050px;
+            position: relative
+        }
+
+        h1 span {
+            display: block
+        }
+
+        h1 span:last-child {
+            color: var(--red);
+            transform: translateX(5%);
+            text-shadow: 5px 5px 0 rgba(23, 16, 19, .14)
+        }
+
+        h1:hover {
+            text-shadow: 3px 0 var(--red), -3px 0 var(--pale)
+        }
+
+        .hero-bottom {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: end
+        }
+
+        .hero-sub {
+            font-size: clamp(22px, 3vw, 43px);
+            font-weight: 900;
+            letter-spacing: -.025em;
+            line-height: 1.02
+        }
+
+        .hero-info {
+            max-width: 360px;
+            justify-self: end
+        }
+
+        .hero-info p {
+            font-size: 15px;
+            line-height: 1.7
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 35px;
+            padding: 17px 22px;
+            border: 1px solid currentColor;
+            font-size: 12px;
+            letter-spacing: .1em;
+            font-weight: 900;
+            text-transform: uppercase;
+            transition: transform .2s, background .2s, color .2s;
+            cursor: pointer
+        }
+
+        .btn:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 4px 4px 0 var(--red)
+        }
+
+        .btn-dark {
+            background: var(--dark);
+            color: var(--pale);
+            border-color: var(--dark)
+        }
+
+        .btn-mint {
+            background: var(--mint);
+            color: var(--dark);
+            border-color: var(--mint)
+        }
+
+        .section {
+            padding: 110px 0
+        }
+
+        .section-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            gap: 25px;
+            border-top: 1px solid var(--line);
+            padding-top: 18px;
+            margin-bottom: 60px
+        }
+
+        .section-head h2 {
+            font-size: clamp(34px, 7.2vw, 104px);
+            line-height: .96;
+            letter-spacing: -.025em;
+            margin: 15px 0 0;
+            font-weight: 1000;
+            text-transform: uppercase
+        }
+
+        .section-head .mono {
+            color: var(--mint)
+        }
+
+        .section-number {
+            font-size: 13px;
+            color: var(--mint)
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8vw
+        }
+
+        .about-lead {
+            font-size: clamp(30px, 4.5vw, 65px);
+            font-weight: 900;
+            letter-spacing: -.025em;
+            line-height: 1.04;
+            margin: 0
+        }
+
+        .about-lead em {
+            font-style: normal;
+            color: var(--mint)
+        }
+
+        .about-copy {
+            padding-top: 15px
+        }
+
+        .about-copy p {
+            font-size: 17px;
+            line-height: 1.8;
+            color: #c7d4cf
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+            margin-top: 35px
+        }
+
+        .tag {
+            border: 1px solid var(--line);
+            padding: 10px 14px;
+            font: 12px 'Courier New', monospace;
+            color: var(--mint)
+        }
+
+        .visual-band {
+            height: 220px;
+            position: relative;
+            overflow: hidden;
+            background: var(--red);
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+
+        .visual-band:before {
+            content: '';
+            position: absolute;
+            inset: 0
+        }
+
+        .visual-band strong {
+            position: relative;
+            font-size: clamp(55px, 12vw, 180px);
+            letter-spacing: -.1em;
+            white-space: nowrap;
+            transform: rotate(-3deg);
+            color: var(--pale);
+            text-shadow: 7px 6px 0 var(--dark)
+        }
+
+        .lineup {
+            background: #21171b
+        }
+
+        .artists {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px
+        }
+
+        .artist {
+            position: relative;
+            min-height: 350px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            padding: 22px;
+            border: 1px solid var(--line);
+            background: #31252a
+        }
+
+        .artist:nth-child(2) {
+            background: #631922
+        }
+
+        .artist:nth-child(3) {
+            background: #1c4c4a
+        }
+
+        .artist:nth-child(4) {
+            background: #3c263b
+        }
+
+        .artist:nth-child(5) {
+            background: #5c2d20
+        }
+
+        .artist:nth-child(6) {
+            background: #253d3b
+        }
+
+        .artist>* {
+            position: relative;
+            z-index: 1
+        }
+
+        .artist .mono {
+            color: var(--pale)
+        }
+
+        .artist h3 {
+            font-size: clamp(30px, 4vw, 55px);
+            line-height: .9;
+            letter-spacing: -.07em;
+            margin: 0 0 12px;
+            text-transform: uppercase;
+            overflow-wrap: anywhere
+        }
+
+        .artist p {
+            margin: 0;
+            color: var(--mint);
+            font: 12px 'Courier New', monospace;
+            text-transform: uppercase
+        }
+
+        .schedule-list {
+            border-top: 1px solid var(--line)
+        }
+
+        .slot {
+            display: grid;
+            grid-template-columns: 130px 1fr 160px;
+            gap: 20px;
+            align-items: center;
+            padding: 24px 12px;
+            border-bottom: 1px solid var(--line);
+            transition: background .2s
+        }
+
+        .slot:hover {
+            background: rgba(145, 233, 223, .08)
+        }
+
+        .slot time {
+            font: 20px 'Courier New', monospace;
+            color: var(--mint)
+        }
+
+        .slot strong {
+            font-size: clamp(22px, 3vw, 40px);
+            text-transform: uppercase;
+            letter-spacing: -.02em
+        }
+
+        .slot .mono {
+            text-align: right;
+            color: #aebbb5
+        }
+
+        .tickets {
+            background: var(--mint);
+            color: var(--dark)
+        }
+
+        .tickets .section-head {
+            border-color: rgba(23, 16, 19, .3)
+        }
+
+        .tickets .section-head .mono,
+        .tickets .section-number {
+            color: var(--red)
+        }
+
+        .ticket-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px
+        }
+
+        .ticket {
+            border: 2px solid var(--dark);
+            padding: 28px;
+            min-height: 330px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start
+        }
+
+        .ticket.featured {
+            background: var(--dark);
+            color: var(--pale)
+        }
+
+        .ticket h3 {
+            font-size: clamp(28px, 3.4vw, 34px);
+            letter-spacing: -.025em;
+            margin: 28px 0 5px
+        }
+
+        .price {
+            font-size: clamp(40px, 5vw, 70px);
+            font-weight: 1000;
+            letter-spacing: -.08em
+        }
+
+        .ticket p {
+            line-height: 1.6;
+            font-size: 14px;
+            flex: 1
+        }
+
+        .ticket .btn {
+            width: 100%
+        }
+
+        .ticket-note {
+            font-size: 12px;
+            margin-top: 24px;
+            line-height: 1.6
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px
+        }
+
+        .contact-grid h3 {
+            font-size: clamp(27px, 4vw, 50px);
+            letter-spacing: -.025em;
+            margin: 0 0 24px
+        }
+
+        .contact-grid p {
+            line-height: 1.8;
+            color: #c7d4cf
+        }
+
+        .social {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px
+        }
+
+        .social a {
+            border-bottom: 1px solid var(--mint);
+            padding-bottom: 5px;
+            font-weight: bold;
+            font-size: 13px
+        }
+
+        .footer {
+            border-top: 1px solid var(--line);
+            padding: 35px 0
+        }
+
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px
+        }
+
+        .footer strong {
+            font-size: 32px;
+            letter-spacing: -.09em
+        }
+
+        .footer .mono {
+            color: #aebbb5
+        }
+
+        :focus-visible {
+            outline: 3px solid var(--red);
+            outline-offset: 4px
+        }
+
+        .top :focus-visible,
+        .lineup :focus-visible,
+        .schedule :focus-visible,
+        .contacts :focus-visible {
+            outline-color: var(--mint)
+        }
+
+        @media(max-width:850px) {
+
+            .artists,
+            .ticket-grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .ticket:last-child {
+                grid-column: 1/-1
+            }
+
+            .hero {
+                min-height: 650px
+            }
+
+            .section {
+                padding: 85px 0
+            }
+
+            .links {
+                gap: 13px
+            }
+
+            .links a {
+                font-size: 10px
+            }
+        }
+
+        @media(max-width:620px) {
+            .container {
+                width: min(100% - 32px, 1240px)
+            }
+
+            .nav {
+                height: 68px
+            }
+
+            .menu-toggle {
+                display: block
+            }
+
+            .links {
+                display: none;
+                position: absolute;
+                top: 68px;
+                left: 0;
+                right: 0;
+                background: var(--dark);
+                padding: 25px 16px 30px;
+                border-bottom: 1px solid var(--line);
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0
+            }
+
+            .links.open {
+                display: flex
+            }
+
+            .links a {
+                padding: 14px;
+                font-size: 14px
+            }
+
+            .hero {
+                min-height: 650px
+            }
+
+            .hero-content {
+                padding: 95px 0 80px
+            }
+
+            h1 {
+                font-size: clamp(75px, 21vw, 140px);
+                margin: 55px 0
+            }
+
+            .hero-bottom,
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr
+            }
+
+            .hero-info {
+                justify-self: start
+            }
+
+            .hero-sub {
+                font-size: clamp(26px, 8.33vw, 30px)
+            }
+
+            .section {
+                padding: 70px 0
+            }
+
+            .section-head {
+                margin-bottom: 40px
+            }
+
+            .artists,
+            .ticket-grid {
+                grid-template-columns: 1fr
+            }
+
+            .ticket:last-child {
+                grid-column: auto
+            }
+
+            .artist {
+                min-height: 300px
+            }
+
+            .slot {
+                grid-template-columns: 75px 1fr;
+                gap: 10px
+            }
+
+            .slot time {
+                font-size: 14px
+            }
+
+            .slot .mono {
+                grid-column: 2;
+                text-align: left
+            }
+
+            .slot strong {
+                font-size: 25px
+            }
+
+            .visual-band {
+                height: 150px
+            }
+
+            .footer-inner {
+                align-items: start;
+                flex-direction: column
+            }
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+            html {
+                scroll-behavior: auto
+            }
+
+            *,
+            *:before,
+            *:after {
+                animation: none !important;
+                transition: none !important
+            }
+        }
+
+        .visual-band strong {
+            font-size: clamp(40px, 9vw, 140px);
+            letter-spacing: -.075em
+        }
+
+        @media(max-width:768px) {
+            .hero::after {
+                display: none
+            }
+        }
+
+        @media(max-width:620px) {
+            .nav {
+                gap: 12px
+            }
+
+            .menu-toggle {
+                white-space: nowrap
+            }
+
+            .section-head {
+                display: grid;
+                grid-template-columns: minmax(0, 1fr) auto;
+                gap: 12px 10px
+            }
+
+            .section-head>div:first-child {
+                display: contents
+            }
+
+            .section-number {
+                grid-area: 1 / 2;
+                font-size: 10px;
+                text-align: right
+            }
+
+            .section-head h2 {
+                grid-column: 1/-1;
+                margin: 0
+            }
+
+            .visual-band strong {
+                font-size: clamp(35px, 9vw, 70px)
+            }
+        }
+
+        .ticker {
+            overflow: hidden;
+            border-block: 1px solid var(--dark);
+            background: var(--red);
+            color: white;
+            padding-block: 13px;
+            white-space: nowrap;
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: .15em;
+        }
+
+        .ticker-track {
+            display: flex;
+            width: max-content;
+            animation: ticker-scroll 56s linear infinite;
+        }
+
+        /* Each copy covers at least the viewport and includes spacing at its end. */
+        .ticker-group {
+            display: flex;
+            flex: none;
+            justify-content: space-around;
+            min-width: 100vw;
+        }
+
+        .ticker-group span {
+            flex: none;
+            padding-inline-end: 35px
+        }
+
+        @keyframes ticker-scroll {
+            to {
+                transform: translateX(-50%)
+            }
+        }
+
+        .artist {
+            --noise-light: radial-gradient(circle at 1px 2px, rgba(224, 247, 236, .24) .5px, transparent 1px);
+            --noise-dark: radial-gradient(circle at 2px 1px, rgba(23, 16, 19, .5) .6px, transparent 1.2px);
+            --signal-offset: rotate(-8deg) scale(1.04);
+            isolation: isolate;
+        }
+
+        .artist::before,
+        .artist::after {
+            content: '';
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .artist::before {
+            inset: 12% 8% 14%;
+            background: var(--signal);
+            transform: var(--signal-offset);
+            filter: drop-shadow(-2px 0 rgba(145, 233, 223, .52)) drop-shadow(3px 1px rgba(160, 10, 23, .78));
+            transition: transform .35s ease, filter .35s ease;
+        }
+
+        .artist::after {
+            inset: 0
+        }
+
+        .artist>* {
+            text-shadow: 0 2px 9px var(--dark)
+        }
+
+        .artist:nth-child(1) {
+            --signal:
+                linear-gradient(90deg, transparent 17%, rgba(23, 16, 19, .65) 17% 43%, transparent 43%) center 33% / 100% 7% no-repeat,
+                repeating-linear-gradient(0deg, transparent 0 6px, rgba(23, 16, 19, .48) 6px 8px),
+                radial-gradient(ellipse at 52% 47%, transparent 0 37%, var(--mint) 38% 48%, transparent 49% 52%, rgba(145, 233, 223, .45) 53% 54%, transparent 55%);
+        }
+
+        .artist:nth-child(2) {
+            --signal-offset: skewY(-12deg);
+            --signal:
+                repeating-linear-gradient(0deg, transparent 0 7px, rgba(23, 16, 19, .7) 7px 8px),
+                repeating-linear-gradient(90deg, rgba(145, 233, 223, .52) 0 4px, transparent 4px 10px) 86% 86% / 73% 35% no-repeat,
+                linear-gradient(90deg, var(--pale) 10%, transparent 10% 13%, rgba(145, 233, 223, .65) 13% 71%, transparent 71% 76%, var(--mint) 76%) 16% 24% / 84% 29% no-repeat,
+                linear-gradient(90deg, var(--red) 26%, transparent 26% 30%, var(--pale) 30% 95%, transparent 95%) 73% 55% / 65% 12% no-repeat;
+        }
+
+        .artist:nth-child(3) {
+            --signal-offset: rotate(7deg) scale(1.05);
+            --signal:
+                linear-gradient(90deg, transparent 54%, rgba(145, 233, 223, .48) 54% 55%, transparent 55%),
+                linear-gradient(0deg, transparent 55%, rgba(145, 233, 223, .48) 55% 56%, transparent 56%),
+                conic-gradient(from -18deg at 55% 45%, transparent 0 77%, rgba(145, 233, 223, .34) 99%, transparent 100%),
+                repeating-radial-gradient(circle at 55% 45%, transparent 0 19px, rgba(145, 233, 223, .5) 20px 21px, transparent 22px 28px);
+        }
+
+        .artist:nth-child(4) {
+            --signal-offset: skewX(-13deg) rotate(-4deg);
+            --signal:
+                repeating-linear-gradient(90deg, transparent 0 15px, rgba(23, 16, 19, .65) 15px 17px),
+                repeating-linear-gradient(0deg, transparent 0 8px, rgba(224, 247, 236, .8) 8px 9px, transparent 9px 14px) 12% 13% / 78% 53% no-repeat,
+                repeating-linear-gradient(0deg, transparent 0 9px, rgba(145, 233, 223, .45) 9px 10px, transparent 10px 15px) 89% 88% / 58% 64% no-repeat,
+                linear-gradient(90deg, transparent 25%, rgba(145, 233, 223, .44) 25% 84%, transparent 84%) center 57% / 100% 12px no-repeat;
+        }
+
+        .artist:nth-child(5) {
+            --signal-offset: rotate(-16deg) scale(1.12);
+            --signal:
+                repeating-linear-gradient(0deg, transparent 0 4px, rgba(23, 16, 19, .55) 4px 5px),
+                linear-gradient(90deg, transparent 4%, var(--mint) 4% 22%, transparent 22% 31%, var(--pale) 31% 88%, transparent 88%) center 43% / 100% 8% no-repeat,
+                repeating-linear-gradient(90deg, rgba(145, 233, 223, .65) 0 4px, transparent 4px 9px) center 49% / 93% 30% no-repeat,
+                repeating-linear-gradient(90deg, rgba(224, 247, 236, .6) 0 2px, transparent 2px 7px) 33% 62% / 68% 30% no-repeat;
+        }
+
+        .artist:nth-child(6) {
+            --signal-offset: rotate(9deg);
+            --signal:
+                repeating-linear-gradient(0deg, transparent 0 5px, rgba(23, 16, 19, .4) 5px 7px),
+                repeating-conic-gradient(rgba(145, 233, 223, .65) 0% 25%, transparent 0% 50%) 62% 23% / 26px 26px,
+                linear-gradient(135deg, var(--dark) 24%, transparent 24% 75%, var(--dark) 75%);
+        }
+
+        .artist:nth-child(6)::before {
+            clip-path: polygon(14% 0, 71% 0, 71% 16%, 96% 16%, 96% 67%, 72% 67%, 72% 88%, 46% 88%, 46% 100%, 24% 100%, 24% 58%, 4% 58%, 4% 19%, 14% 19%);
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            .ticker:hover .ticker-track {
+                animation-play-state: paused
+            }
+
+            .artist:hover {
+                border-color: var(--mint)
+            }
+        }
+
+        @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+            .artist:hover::before {
+                transform: translate(3px, -2px) var(--signal-offset);
+                filter: drop-shadow(-4px 0 rgba(145, 233, 223, .58)) drop-shadow(5px 1px rgba(160, 10, 23, .82));
+            }
+        }
+
+        /* Signal monitor and transitions */
+        :root {
+            --scanlines: repeating-linear-gradient(0deg, transparent 0 3px, rgba(23, 16, 19, .22) 3px 4px);
+            --grid-size: 42px;
+            --gridlines:
+                linear-gradient(rgba(145, 233, 223, .08) 1px, transparent 1px) 0 0 / var(--grid-size) var(--grid-size),
+                linear-gradient(90deg, rgba(145, 233, 223, .08) 1px, transparent 1px) 0 0 / var(--grid-size) var(--grid-size);
+        }
+
+        .hero {
+            isolation: isolate;
+            overflow: clip;
+            background: var(--dark);
+            color: var(--pale);
+        }
+
+        .hero::before {
+            background:
+                radial-gradient(ellipse at 85% 44%, rgba(145, 233, 223, .17), transparent 54%),
+                linear-gradient(90deg, rgba(160, 10, 23, .4), transparent 1.5%),
+                var(--scanlines),
+                var(--gridlines);
+        }
+
+        .hero::after {
+            z-index: 3;
+            color: var(--mint)
+        }
+
+        .hero-content {
+            padding-block: 72px 49px
+        }
+
+        .eyebrow {
+            color: var(--mint)
+        }
+
+        .eyebrow::before {
+            flex: none;
+            background: var(--mint);
+            width: 19px
+        }
+
+        .hero h1 {
+            z-index: 1;
+            color: var(--pale);
+            font-size: clamp(86px, 17.2vw, 285px);
+            margin-block: 48px 37px;
+            text-shadow: -2px 0 rgba(145, 233, 223, .55), 3px 1px var(--red);
+        }
+
+        .hero h1 span:last-child {
+            color: var(--mint);
+            text-shadow: 4px 2px var(--red);
+        }
+
+        .hero-bottom {
+            position: relative;
+            z-index: 1;
+            border-top: 1px solid rgba(145, 233, 223, .42);
+            padding-top: 18px;
+        }
+
+        .hero-sub {
+            align-self: center
+        }
+
+        .hero-info p {
+            margin-top: 0
+        }
+
+        .hero-info .btn {
+            background: var(--mint);
+            color: var(--dark);
+            border-color: var(--mint)
+        }
+
+        .signal-monitor {
+            --grid-size: 21px;
+            position: absolute;
+            top: 59px;
+            right: 0;
+            width: min(49%, 585px);
+            aspect-ratio: 1.22;
+            overflow: clip;
+            margin: 0;
+            border: 1px solid rgba(145, 233, 223, .48);
+            background:
+                var(--scanlines),
+                radial-gradient(ellipse at 65% 49%, rgba(145, 233, 223, .17), transparent 58%),
+                var(--gridlines),
+                var(--dark);
+            box-shadow: 7px 7px 0 rgba(160, 10, 23, .54);
+        }
+
+        .signal-monitor::before {
+            position: absolute;
+            inset: 11px;
+            z-index: 1;
+            content: '';
+            pointer-events: none;
+            border: 1px solid rgba(145, 233, 223, .28);
+            clip-path: polygon(0 0, 100% 0, 100% 14%, 74% 14%, 74% 83%, 100% 83%, 100% 100%, 0 100%, 0 86%, 28% 86%, 28% 15%, 0 15%);
+        }
+
+        .signal-monitor::after {
+            position: absolute;
+            inset: 0;
+            content: '';
+            pointer-events: none;
+            background: linear-gradient(90deg, rgba(23, 16, 19, .78), transparent 42%), var(--scanlines);
+        }
+
+        .monitor-art {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover
+        }
+
+        .monitor-meta {
+            position: absolute;
+            z-index: 1;
+            margin: 0;
+            color: var(--pale);
+            background: var(--dark);
+            padding: 4px 6px;
+            font-size: 10px;
+        }
+
+        .monitor-meta:first-of-type {
+            top: 15px;
+            left: 17px
+        }
+
+        .monitor-meta:last-of-type {
+            bottom: 15px;
+            right: 17px;
+            color: var(--mint)
+        }
+
+        [data-glitch] {
+            position: relative
+        }
+
+        [data-glitch]::after {
+            content: attr(data-glitch) / "";
+            position: absolute;
+            inset: 0;
+            color: var(--mint);
+            text-shadow: 3px 0 var(--red);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .hero h1 [data-glitch]::after {
+            color: var(--pale)
+        }
+
+        .section-head {
+            position: relative;
+            --edge: var(--mint);
+        }
+
+        .section-head::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 0;
+            width: 94px;
+            height: 3px;
+            background: repeating-linear-gradient(90deg, var(--edge) 0 9px, transparent 9px 12px);
+            transform-origin: left;
+        }
+
+        .section-head h2 {
+            text-shadow: -1px 0 rgba(145, 233, 223, .5), 2px 0 var(--red)
+        }
+
+        .tickets .section-head {
+            --edge: var(--red)
+        }
+
+        .tickets .section-head h2 {
+            text-shadow: 2px 0 rgba(160, 10, 23, .55)
+        }
+
+        .tickets .section-head h2::after {
+            color: var(--red)
+        }
+
+        .visual-band {
+            isolation: isolate;
+            overflow: clip;
+            height: clamp(150px, 21vw, 278px);
+            background: var(--dark);
+            border-block: 1px solid var(--red);
+        }
+
+        .visual-band::before {
+            inset: -14% 0;
+            background:
+                repeating-linear-gradient(0deg, transparent 0 5px, rgba(224, 247, 236, .14) 5px 6px),
+                repeating-linear-gradient(90deg, transparent 0 24px, rgba(23, 16, 19, .4) 24px 26px),
+                linear-gradient(162deg, transparent 9%, var(--red) 9% 50%, transparent 50% 52%, var(--red) 52% 68%, transparent 68%);
+        }
+
+        .visual-band strong {
+            transform: skewX(-8deg) rotate(-3deg);
+            text-shadow: -3px 0 var(--dark), 4px 1px var(--red), 7px 5px var(--dark);
+        }
+
+        .band-meta {
+            position: absolute;
+            z-index: 1;
+            margin: 0;
+            font-size: 10px
+        }
+
+        .band-meta:first-child {
+            top: 16px;
+            left: max(16px, calc((100% - 1240px) / 2))
+        }
+
+        .band-meta:last-child {
+            bottom: 16px;
+            right: max(16px, calc((100% - 1240px) / 2));
+            color: var(--mint)
+        }
+
+        .section-seam {
+            overflow: hidden;
+            min-height: 45px;
+            position: relative;
+            isolation: isolate;
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            color: var(--mint);
+            border-block: 1px solid var(--line);
+            background: var(--dark);
+        }
+
+        .section-seam::before {
+            content: '';
+            position: absolute;
+            inset: 7px 0 6px 48%;
+            background: var(--scanlines), repeating-linear-gradient(90deg, var(--mint) 0 2px, transparent 2px 7px);
+            clip-path: polygon(0 60%, 22% 60%, 22% 32%, 45% 32%, 45% 81%, 69% 81%, 69% 0, 100% 0, 100% 100%, 0 100%);
+            opacity: .55;
+        }
+
+        .section-seam--ticket {
+            color: var(--pale);
+            background: var(--red)
+        }
+
+        .section-seam--ticket::before {
+            background: repeating-linear-gradient(120deg, var(--dark) 0 5px, transparent 5px 11px);
+            clip-path: polygon(5% 0, 100% 0, 100% 100%, 0 100%);
+        }
+
+        .section-seam span {
+            font-size: 10px
+        }
+
+        .schedule {
+            background: var(--gridlines), var(--dark)
+        }
+
+        .schedule-list {
+            background: var(--dark)
+        }
+
+        .slot time {
+            border-left: 2px solid var(--red);
+            padding-left: 8px
+        }
+
+        .tickets {
+            background:
+                repeating-linear-gradient(90deg, transparent 0 39px, rgba(23, 16, 19, .12) 39px 40px) left top / 100% 14px no-repeat,
+                var(--mint);
+        }
+
+        .ticket {
+            box-shadow: 5px 5px 0 rgba(23, 16, 19, .22)
+        }
+
+        .contacts {
+            background: radial-gradient(ellipse at 93% 5%, rgba(160, 10, 23, .2), transparent 46%), var(--dark);
+        }
+
+        /* Cover artwork and typography are independently layered. */
+        .lineup {
+            --grid-size: 64px;
+            background: var(--gridlines), #21171b;
+        }
+
+        .artists {
+            gap: 12px
+        }
+
+        .artist {
+            min-height: clamp(348px, 30vw, 465px);
+            padding: 18px;
+            transition: border-color .25s;
+        }
+
+        .artist::before {
+            inset: 5%;
+            opacity: .35
+        }
+
+        .artist::after {
+            background:
+                linear-gradient(180deg, rgba(23, 16, 19, .91) 0 5%, transparent 24% 44%, rgba(23, 16, 19, .89) 78%, var(--dark) 100%),
+                linear-gradient(90deg, var(--mint) 76%, transparent 76%) 94% 14% / 12% 1px no-repeat,
+                linear-gradient(90deg, var(--red) 78%, transparent 78%) 5% 52% / 44% 3px no-repeat,
+                var(--scanlines),
+                var(--noise-light) 0 0 / 11px 7px,
+                var(--noise-dark) 0 0 / 7px 13px;
+        }
+
+        .artist>.artist-art,
+        .artist>.art-slice {
+            position: absolute;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .artist-art {
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .55s cubic-bezier(.22, .7, .3, 1);
+        }
+
+        .artist>.art-slice {
+            inset: 8% 0 22%;
+            background: var(--signal);
+            clip-path: polygon(3% 12%, 79% 12%, 79% 15%, 47% 15%, 47% 47%, 92% 47%, 92% 52%, 14% 52%, 14% 49%, 27% 49%, 27% 16%, 3% 16%);
+            opacity: .38;
+        }
+
+        .artist>.mono {
+            align-self: flex-start;
+            padding: 5px 6px;
+            background: var(--dark);
+            font-size: 10px
+        }
+
+        .artist h3 {
+            line-height: .97;
+            letter-spacing: -.055em
+        }
+
+        .artist p {
+            line-height: 1.4
+        }
+
+        .btn {
+            position: relative
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0;
+            background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(160, 10, 23, .27) 3px 4px);
+        }
+
+        @media (max-width: 850px) {
+            .hero-content {
+                padding-block: 59px 45px
+            }
+
+            .signal-monitor {
+                width: 47%;
+                top: 50px
+            }
+        }
+
+        @media (max-width: 620px) {
+            .hero-content {
+                padding-block: 36px 37px
+            }
+
+            .hero h1 {
+                font-size: clamp(75px, 21vw, 140px);
+                margin-block: 32px 30px
+            }
+
+            .hero h1 span:last-child {
+                transform: translateX(3%)
+            }
+
+            .signal-monitor {
+                position: relative;
+                top: auto;
+                width: min(100%, 420px);
+                aspect-ratio: 1.44;
+                margin: 0 0 25px auto
+            }
+
+            .signal-monitor::after {
+                background: var(--scanlines)
+            }
+
+            .hero-bottom {
+                gap: 17px
+            }
+
+            .artist {
+                min-height: clamp(338px, 105vw, 465px)
+            }
+
+            .nav:not([data-menu-ready]) {
+                height: auto;
+                flex-wrap: wrap;
+                padding-block: 14px 8px
+            }
+
+            .nav:not([data-menu-ready]) .menu-toggle {
+                display: none
+            }
+
+            .nav:not([data-menu-ready]) .links {
+                position: static;
+                display: flex;
+                flex-flow: row wrap;
+                border: 0;
+                background: transparent;
+                padding: 0;
+            }
+
+            .nav:not([data-menu-ready]) .links a {
+                padding: 8px
+            }
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .section-head.visible::before {
+                animation: sync-rule .65s ease-out both
+            }
+
+            .hero h1 span:last-child::after {
+                animation: text-shear .8s .4s ease-out both
+            }
+
+            .visual-band.visible strong::after {
+                animation: dropped-frame 14s linear infinite
+            }
+
+            .section-seam.visible::before {
+                animation: lock-wave .7s ease-out both
+            }
+
+            .section-seam--ticket.visible::before {
+                animation: splice-cut .6s ease-out both
+            }
+
+            .artist.visible .artist-art {
+                animation: cover-register .8s var(--reveal-delay, 0s) both
+            }
+
+            .artist.visible .art-slice {
+                animation: cover-scrub .82s var(--reveal-delay, 0s) both
+            }
+
+            .about-lead.visible,
+            .contact-grid .visible {
+                animation: print-in .6s ease-out both
+            }
+
+            @supports (animation-timeline: view()) {
+                .signal-monitor .monitor-art {
+                    animation: monitor-drift linear both;
+                    animation-timeline: view();
+                    animation-range: cover 0% cover 100%;
+                }
+
+                .visual-band::before {
+                    animation: band-drift linear both;
+                    animation-timeline: view();
+                    animation-range: cover 0% cover 100%;
+                }
+            }
+        }
+
+        @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+            .artist:hover .artist-art {
+                transform: scale(1.085) translate(-2%, 1%)
+            }
+
+            .artist:hover .art-slice {
+                animation: cover-distort .58s ease-out both
+            }
+
+            .btn:hover::after {
+                animation: button-interference .42s ease-out
+            }
+
+            .links a:hover,
+            .social a:hover {
+                text-shadow: 2px 0 var(--red)
+            }
+        }
+
+        @keyframes text-shear {
+            0% {
+                clip-path: inset(19% 0 55%);
+                opacity: .64;
+                transform: translateX(-4px)
+            }
+
+            28% {
+                clip-path: inset(51% 0 32%);
+                opacity: .86;
+                transform: translateX(5px)
+            }
+
+            65% {
+                clip-path: inset(66% 0 12%);
+                opacity: .36;
+                transform: translateX(-2px)
+            }
+
+            100% {
+                clip-path: inset(68% 0 25%);
+                opacity: 0;
+                transform: none
+            }
+        }
+
+        @keyframes dropped-frame {
+
+            0%,
+            66% {
+                clip-path: inset(23% 0 61%);
+                opacity: 0;
+                transform: none
+            }
+
+            68% {
+                clip-path: inset(23% 0 61%);
+                opacity: .64;
+                transform: translateX(-6px)
+            }
+
+            69.5% {
+                clip-path: inset(56% 0 27%);
+                opacity: .56;
+                transform: translateX(4px)
+            }
+
+            71%,
+            100% {
+                clip-path: inset(56% 0 36%);
+                opacity: 0;
+                transform: none
+            }
+        }
+
+        @keyframes lock-wave {
+            from {
+                transform: translateX(25%) scaleY(.2);
+                opacity: .24
+            }
+
+            to {
+                transform: none
+            }
+        }
+
+        @keyframes splice-cut {
+            from {
+                transform: translateX(22%) skewX(-18deg);
+                opacity: .22
+            }
+
+            to {
+                transform: none
+            }
+        }
+
+        @keyframes sync-rule {
+            from {
+                transform: scaleX(.08)
+            }
+
+            to {
+                transform: scaleX(1)
+            }
+        }
+
+        @keyframes cover-register {
+            from {
+                opacity: .59;
+                translate: -10px 6px
+            }
+
+            35% {
+                opacity: .86;
+                translate: 5px -2px
+            }
+
+            to {
+                opacity: 1;
+                translate: 0 0
+            }
+        }
+
+        @keyframes cover-scrub {
+            from {
+                clip-path: inset(18% 0 68%);
+                transform: translateX(-14px);
+                opacity: .63
+            }
+
+            30% {
+                clip-path: inset(42% 0 47%);
+                transform: translateX(9px);
+                opacity: .74
+            }
+
+            65% {
+                clip-path: inset(55% 0 38%);
+                transform: translateX(-5px);
+                opacity: .4
+            }
+
+            to {
+                opacity: .38
+            }
+        }
+
+        @keyframes cover-distort {
+            0% {
+                clip-path: inset(56% 0 28%);
+                transform: translateX(15px);
+                opacity: .75
+            }
+
+            43% {
+                clip-path: inset(15% 0 72%);
+                transform: translateX(-11px);
+                opacity: .59
+            }
+
+            to {
+                transform: translateX(4px);
+                opacity: .48
+            }
+        }
+
+        @keyframes print-in {
+            from {
+                transform: translateY(11px);
+                opacity: .9
+            }
+
+            to {
+                transform: none;
+                opacity: 1
+            }
+        }
+
+        @keyframes monitor-drift {
+            from {
+                transform: translateY(-6%) scale(1.16)
+            }
+
+            to {
+                transform: translateY(6%) scale(1.16)
+            }
+        }
+
+        @keyframes band-drift {
+            from {
+                transform: translateY(-9%)
+            }
+
+            to {
+                transform: translateY(9%)
+            }
+        }
+
+        @keyframes button-interference {
+            0% {
+                clip-path: inset(0 0 77%);
+                opacity: .85
+            }
+
+            45% {
+                clip-path: inset(41% 0 33%);
+                opacity: .62
+            }
+
+            to {
+                clip-path: inset(81% 0 0);
+                opacity: 0
+            }
+        }
+
+        /* The signal readout gets its own row in the sticky header. */
+        html {
+            scroll-padding-top: 122px
+        }
+
+        .signal-bridge {
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+            border-bottom: 1px solid var(--line);
+            background: var(--scanlines), var(--gridlines), #21171b;
+        }
+
+        .signal-bridge::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background: rgba(160, 10, 23, .52);
+            clip-path: polygon(0 0, 74% 0, 74% 24%, 60% 24%, 60% 55%, 43% 55%, 43% 76%, 29% 76%, 29% 100%, 0 100%);
+        }
+
+        .bridge-inner {
+            position: relative;
+            display: grid;
+            align-items: center;
+            min-height: clamp(136px, 15vw, 220px);
+            padding-block: 23px;
+        }
+
+        .bridge-label {
+            z-index: 1;
+            display: grid;
+            justify-items: start;
+            gap: 8px;
+            color: var(--pale);
+        }
+
+        .bridge-label span {
+            font-size: 10px;
+            background: var(--dark);
+            padding: 3px 6px
+        }
+
+        .bridge-label strong {
+            padding: 4px 8px 6px;
+            background: var(--dark);
+            font: 1000 clamp(26px, 5.7vw, 82px)/.95 Arial, Helvetica, sans-serif;
+            letter-spacing: -.025em;
+            text-shadow: -2px 0 var(--mint), 2px 0 var(--red);
+        }
+
+        .bridge-trace {
+            position: absolute;
+            inset: 13% 0 11% 31%;
+            background: repeating-linear-gradient(90deg, var(--mint) 0 2px, transparent 2px 7px);
+            opacity: .66;
+            clip-path: polygon(0 38%, 10% 38%, 10% 46%, 15% 46%, 15% 16%, 23% 16%, 23% 69%, 31% 69%, 31% 32%, 37% 32%, 37% 55%, 46% 55%, 46% 12%, 55% 12%, 55% 79%, 62% 79%, 62% 37%, 72% 37%, 72% 49%, 79% 49%, 79% 27%, 85% 27%, 85% 57%, 93% 57%, 93% 44%, 100% 44%, 100% 54%, 93% 54%, 93% 73%, 85% 73%, 85% 42%, 79% 42%, 79% 66%, 72% 66%, 72% 55%, 62% 55%, 62% 98%, 55% 98%, 55% 29%, 46% 29%, 46% 71%, 37% 71%, 37% 50%, 31% 50%, 31% 86%, 23% 86%, 23% 32%, 15% 32%, 15% 62%, 10% 62%, 10% 50%, 0 50%);
+        }
+
+        .slot {
+            position: relative
+        }
+
+        .slot::after {
+            content: '';
+            position: absolute;
+            inset: auto 0 0;
+            height: 2px;
+            opacity: 0;
+            pointer-events: none;
+            background: var(--mint);
+            transform-origin: left;
+        }
+
+        @media (max-width: 620px) {
+            .links {
+                top: 100%;
+                max-height: calc(100dvh - 96px);
+                overflow-y: auto
+            }
+
+            .top:has(.nav:not([data-menu-ready])) {
+                position: static
+            }
+
+            .bridge-trace {
+                inset-inline-start: 16%
+            }
+
+        }
+
+        /* Checkout is a native modal and scrolls independently on short screens. */
+        html.checkout-open {
+            overflow: hidden;
+            overscroll-behavior: none
+        }
+
+        html.checkout-open body {
+            padding-inline-end: var(--checkout-gutter, 0px)
+        }
+
+        .checkout-dialog {
+            width: min(600px, 100% - 28px);
+            max-width: none;
+            max-height: calc(100vh - 28px);
+            max-height: calc(100dvh - 28px);
+            overflow: auto;
+            overscroll-behavior: contain;
+            padding: 0;
+            border: 1px solid var(--mint);
+            background: var(--dark);
+            color: var(--pale);
+            box-shadow: 6px 6px 0 var(--red);
+            color-scheme: dark;
+        }
+
+        .checkout-dialog::backdrop {
+            background: rgba(23, 16, 19, .85)
+        }
+
+        .checkout-dialog:not([open]),
+        .checkout-dialog [hidden] {
+            display: none
+        }
+
+        .checkout-dialog :focus-visible {
+            outline-color: var(--mint)
+        }
+
+        .checkout-panel {
+            padding: clamp(16px, 4vw, 34px)
+        }
+
+        .checkout-header {
+            position: relative;
+            padding-inline-end: 48px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--line);
+            background: var(--scanlines);
+        }
+
+        .checkout-marker {
+            margin: 0;
+            color: var(--mint);
+            font-size: 10px
+        }
+
+        .checkout-header h2 {
+            margin: 8px 0;
+            color: var(--mint);
+            font-size: clamp(34px, 7vw, 61px);
+            letter-spacing: -.085em;
+            line-height: .93;
+            text-shadow: 3px 1px var(--red);
+        }
+
+        .checkout-mode {
+            margin: 0;
+            font-size: 13px;
+            line-height: 1.4
+        }
+
+        .checkout-close {
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: grid;
+            place-items: center;
+            min-width: 44px;
+            min-height: 44px;
+            padding: 0;
+            color: var(--pale);
+            background: transparent;
+            border: 1px solid var(--line);
+            font-size: 26px;
+            cursor: pointer;
+        }
+
+        .checkout-close:hover {
+            background: var(--red)
+        }
+
+        .checkout-form {
+            display: grid;
+            gap: 15px;
+            margin-top: 17px
+        }
+
+        .checkout-fields {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(85px, 27%);
+            gap: 12px
+        }
+
+        .checkout-field {
+            display: grid;
+            gap: 6px;
+            min-width: 0
+        }
+
+        .checkout-field label {
+            color: var(--mint);
+            font-size: 13px;
+            font-weight: 700
+        }
+
+        .checkout-form input,
+        .checkout-form select {
+            width: 100%;
+            min-width: 0;
+            min-height: 44px;
+            padding: 8px 9px;
+            color: inherit;
+            background: #21171b;
+            border: 1px solid var(--line);
+            border-radius: 0;
+            font: 16px Arial, Helvetica, sans-serif;
+        }
+
+        .checkout-total {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 4px 16px;
+            padding-block: 9px;
+            border-block: 1px solid var(--line);
+        }
+
+        .checkout-total output {
+            color: var(--mint);
+            font-size: clamp(27px, 6vw, 41px);
+            font-weight: 900
+        }
+
+        .checkout-form .btn {
+            justify-content: center;
+            gap: 10px;
+            text-align: center
+        }
+
+        .checkout-confirmation {
+            padding-top: 16px
+        }
+
+        .checkout-confirmation h3 {
+            margin-block: 0 14px;
+            font-size: clamp(22px, 5vw, 34px);
+            line-height: 1.13
+        }
+
+        .checkout-confirmation .btn {
+            min-height: 44px
+        }
+
+        .ticket [data-buy]:disabled {
+            cursor: default;
+            opacity: .68;
+            box-shadow: none;
+            transform: none
+        }
+
+        @media (max-width: 400px) {
+            .checkout-fields {
+                grid-template-columns: minmax(0, 1fr)
+            }
+
+            .checkout-header h2 {
+                font-size: 35px
+            }
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .checkout-dialog[open] {
+                animation: terminal-open .38s cubic-bezier(.21, .69, .3, 1)
+            }
+        }
+
+        @keyframes log-trace {
+            from {
+                transform: scaleX(.03);
+                opacity: .7
+            }
+
+            to {
+                transform: scaleX(1);
+                opacity: 0
+            }
+        }
+
+        @keyframes frame-assemble {
+            from {
+                transform: translateX(24%) scaleY(.22);
+                opacity: .35
+            }
+
+            45% {
+                transform: translateX(-3%) scaleY(.69)
+            }
+
+            to {
+                transform: none
+            }
+        }
+
+        @keyframes terminal-open {
+            from {
+                opacity: .72;
+                transform: translate(-7px, 8px);
+                clip-path: inset(9% 0 10%)
+            }
+
+            44% {
+                opacity: .94;
+                transform: translate(3px, 1px);
+                clip-path: inset(0)
+            }
+
+            to {
+                opacity: 1;
+                transform: none;
+                clip-path: none
+            }
+        }
+
+        /* The readout stays in its own row even during a reconnect. */
+        .signal-strip {
+            position: relative;
+            border-top: 1px solid var(--line)
+        }
+
+        .signal-console {
+            --meter-color: var(--mint);
+            display: grid;
+            grid-template-columns: 22ch 4ch max-content minmax(0, 1fr);
+            align-items: center;
+            gap: 11px;
+            min-height: 29px;
+            padding-block: 4px;
+            color: var(--meter-color);
+            font-size: 11px;
+            letter-spacing: .045em;
+        }
+
+        .signal-console[data-signal="unstable"] {
+            --meter-color: #f6ce66
+        }
+
+        .signal-console:is([data-signal="critical"], [data-signal="lost"]) {
+            --meter-color: #f08d91;
+        }
+
+        .signal-console[data-signal="reconnecting"] {
+            --meter-color: var(--pale)
+        }
+
+        .signal-label,
+        .signal-value {
+            white-space: nowrap
+        }
+
+        .signal-value {
+            font-weight: bold;
+            text-align: right
+        }
+
+        .signal-channel {
+            justify-self: end;
+            color: var(--pale);
+            white-space: nowrap;
+            font-size: 10px
+        }
+
+        .signal-meter {
+            display: inline-grid;
+            grid-template-columns: repeat(5, 15px);
+            gap: 3px
+        }
+
+        .signal-meter i {
+            display: block;
+            height: 7px;
+            position: relative;
+            background: rgba(224, 247, 236, .16);
+        }
+
+        .signal-meter i::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--meter-color);
+            transform: scaleX(clamp(0, calc((var(--level, 96) - var(--start, 0)) / 20), 1));
+            transform-origin: left;
+            transition: transform .13s linear, background-color .24s ease;
+        }
+
+        .signal-meter i:nth-child(2) {
+            --start: 20
+        }
+
+        .signal-meter i:nth-child(3) {
+            --start: 40
+        }
+
+        .signal-meter i:nth-child(4) {
+            --start: 60
+        }
+
+        .signal-meter i:nth-child(5) {
+            --start: 80
+        }
+
+        .signal-strip::after,
+        .lineup .section-head::after {
+            content: '';
+            position: absolute;
+            inset: auto 0 0;
+            height: 6px;
+            pointer-events: none;
+            opacity: 0;
+            background:
+                linear-gradient(90deg, transparent 14%, var(--red) 14% 76%, transparent 76%) top / 100% 2px no-repeat,
+                linear-gradient(90deg, transparent 26%, var(--mint) 26% 83%, transparent 83%) bottom / 100% 1px no-repeat;
+        }
+
+        .lineup .section-head::after {
+            inset: 0 0 auto 16%
+        }
+
+        .frequency-index {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            overflow: clip;
+            background: radial-gradient(ellipse at 23% 64%, rgba(160, 10, 23, .4), transparent 72%),
+                var(--scanlines), var(--gridlines), #21171b;
+            border-top: 1px solid var(--line);
+            padding-block: clamp(36px, 6vw, 86px);
+        }
+
+        .frequency-index::before {
+            content: '';
+            position: absolute;
+            inset: 12% 0 8% 25%;
+            z-index: -1;
+            background: repeating-linear-gradient(90deg, transparent 0 11px, rgba(145, 233, 223, .2) 11px 12px);
+            clip-path: polygon(0 15%, 13% 15%, 13% 29%, 40% 29%, 40% 47%, 69% 47%, 69% 64%, 100% 64%, 100% 93%, 54% 93%, 54% 79%, 29% 79%, 29% 62%, 8% 62%, 8% 44%, 0 44%);
+        }
+
+        .frequency-caption {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 8px 18px;
+            padding-top: 9px;
+            border-top: 1px solid rgba(145, 233, 223, .48);
+            color: var(--mint);
+            font-size: 10px;
+        }
+
+        .frequency-field {
+            display: grid;
+            gap: clamp(5px, 1vw, 13px);
+            margin: clamp(28px, 4vw, 48px) 0 0;
+            font-size: clamp(47px, 12vw, 170px);
+            line-height: .81;
+            font-weight: 1000;
+            letter-spacing: -.088em;
+            white-space: nowrap;
+        }
+
+        .genre {
+            display: block;
+            width: max-content
+        }
+
+        .genre:nth-child(1) {
+            color: var(--mint);
+            --from: -9vw;
+            --to: 4vw
+        }
+
+        .genre:nth-child(2) {
+            justify-self: end;
+            color: var(--pale);
+            --from: 10vw;
+            --to: -16vw;
+        }
+
+        .genre:nth-child(3) {
+            padding-inline-start: .72em;
+            color: var(--pale);
+            text-shadow: 4px 3px var(--red);
+            --from: -5vw;
+            --to: 13vw;
+        }
+
+        .genre:nth-child(4) {
+            justify-self: end;
+            font-size: .77em;
+            color: var(--mint);
+            --from: 14vw;
+            --to: -5vw;
+        }
+
+        .genre:nth-child(5) {
+            padding-inline-start: 1.12em;
+            color: var(--pale);
+            text-shadow: -2px 0 var(--mint), 3px 1px var(--red);
+            --from: -10vw;
+            --to: 12vw;
+        }
+
+        @supports (-webkit-text-stroke: 1px) {
+            .genre:nth-child(2) {
+                color: transparent;
+                -webkit-text-stroke: 1px var(--pale)
+            }
+        }
+
+        .transmission-end {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            min-height: max(430px, 69vh);
+            min-height: max(430px, 69svh);
+            display: grid;
+            align-items: center;
+            border-block: 1px solid var(--line);
+            padding-block: clamp(72px, 10vw, 142px);
+            background: radial-gradient(ellipse at 89% 62%, rgba(160, 10, 23, .3), transparent 59%),
+                var(--scanlines), var(--gridlines), var(--dark);
+        }
+
+        .transmission-end::before {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            inset: 0 0 0 20%;
+            background:
+                linear-gradient(90deg, transparent 20%, rgba(145, 233, 223, .42) 20% 79%, transparent 79%) center 64% / 100% 1px no-repeat,
+                repeating-linear-gradient(90deg, transparent 0 6px, rgba(160, 10, 23, .48) 6px 9px);
+            clip-path: polygon(0 64%, 26% 64%, 26% 52%, 52% 52%, 52% 33%, 71% 33%, 71% 12%, 100% 12%, 100% 89%, 77% 89%, 77% 78%, 29% 78%, 29% 67%, 0 67%);
+        }
+
+        .transmission-end::after {
+            content: '';
+            position: absolute;
+            inset: 50% 0 auto 23%;
+            height: 14px;
+            z-index: -1;
+            opacity: 0;
+            background:
+                linear-gradient(90deg, var(--red) 70%, transparent 70%) top / 100% 4px no-repeat,
+                linear-gradient(90deg, transparent 31%, var(--mint) 31% 84%, transparent 84%) bottom / 100% 2px no-repeat;
+        }
+
+        .end-copy {
+            position: relative;
+            margin-block: 0
+        }
+
+        .end-marker {
+            color: var(--mint);
+            margin: 0 0 24px
+        }
+
+        .end-title {
+            font-size: clamp(35px, 11vw, 152px);
+            font-weight: 1000;
+            letter-spacing: -.091em;
+            line-height: .86;
+            margin: 0 0 30px;
+            text-shadow: -2px 0 var(--mint), 4px 2px var(--red);
+        }
+
+        .end-title span {
+            display: block;
+            width: fit-content
+        }
+
+        .end-title span:last-child {
+            margin-inline-start: .47em;
+            color: var(--mint);
+            text-shadow: 5px 3px var(--red);
+        }
+
+        .end-actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 19px 36px
+        }
+
+        .end-actions p {
+            margin: 0;
+            line-height: 1.55
+        }
+
+        .end-actions .btn {
+            min-height: 44px
+        }
+
+        @media (max-width: 620px) {
+            .signal-console {
+                gap: 7px
+            }
+
+            .signal-meter {
+                grid-template-columns: repeat(5, 11px)
+            }
+
+            .frequency-field {
+                letter-spacing: -.079em
+            }
+
+            .transmission-end {
+                align-items: end;
+                padding-block: 62px 39px
+            }
+
+            .end-marker {
+                font-size: 10px;
+                margin-bottom: 18px
+            }
+
+            .end-title {
+                margin-bottom: 23px
+            }
+        }
+
+        @media (max-width: 440px) {
+            .signal-console {
+                grid-template-columns: 22ch 4ch max-content
+            }
+
+            .signal-channel {
+                display: none
+            }
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+
+            [data-interruption="lineup"] :is(.signal-strip, .lineup .section-head)::after {
+                animation: transmission-cut .32s ease-out both;
+            }
+
+            .frequency-field.visible .genre-cut::after {
+                animation: text-shear .62s .14s ease-out both
+            }
+
+            @supports (animation-timeline: view()) {
+                .frequency-index {
+                    view-timeline-name: --frequency-pass
+                }
+
+                .genre {
+                    animation: frequency-drift linear both;
+                    animation-timeline: --frequency-pass;
+                    animation-range: entry 0% exit 100%;
+                }
+            }
+        }
+
+        @keyframes frequency-drift {
+            from {
+                translate: var(--from) 0
+            }
+
+            to {
+                translate: var(--to) 0
+            }
+        }
+
+        @keyframes transmission-cut {
+            0% {
+                opacity: .67;
+                transform: translateX(-13px);
+                clip-path: inset(0 18% 0 4%)
+            }
+
+            38% {
+                opacity: .74;
+                transform: translateX(6px);
+                clip-path: inset(0 4% 0 15%)
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateX(-2px);
+                clip-path: inset(0 27% 0 18%)
+            }
+        }
+
+        /* Readout, localized interference and the small CRT at the end of the stream. */
+        .link-phase {
+            position: absolute;
+            top: 100%;
+            right: max(16px, calc((100% - 1240px) / 2));
+            z-index: 1;
+            margin: 0;
+            padding: 8px 11px;
+            border: 1px solid var(--mint);
+            background: var(--dark);
+            color: var(--mint);
+            font-size: 11px;
+            pointer-events: none;
+        }
+
+        .link-phase:empty {
+            padding: 0;
+            border: 0
+        }
+
+        .end-crt {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            margin-inline-start: auto;
+            width: min(24vw, 260px);
+            height: 76px;
+            background: var(--dark);
+            border: 1px solid rgba(145, 233, 223, .48);
+            box-shadow: 4px 4px 0 var(--red);
+            pointer-events: none;
+        }
+
+        .end-crt-raster {
+            position: absolute;
+            inset: 5px;
+            background:
+                linear-gradient(0deg, transparent 48%, var(--mint) 48% 51%, transparent 51%),
+                repeating-radial-gradient(ellipse at center, transparent 0 10px, rgba(145, 233, 223, .26) 11px 12px),
+                var(--scanlines),
+                var(--gridlines),
+                #273433;
+        }
+
+        .end-crt::after {
+            content: '';
+            position: absolute;
+            inset: calc(50% - 1px) 5px auto;
+            height: 2px;
+            background: var(--mint);
+            transform-origin: center;
+            opacity: 0;
+        }
+
+        [data-transmission="ENDED"] .end-crt-raster {
+            opacity: 0
+        }
+
+        .tickets {
+            position: relative;
+            isolation: isolate;
+            overflow: clip
+        }
+
+        .tickets::before,
+        .tickets::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        .tickets::before {
+            background: linear-gradient(0deg, transparent 65%, rgba(224, 247, 236, .72) 65%);
+        }
+
+        .tickets::after {
+            background: repeating-linear-gradient(0deg, var(--red) 0 2px, transparent 2px 6px) top / 100% 18px no-repeat;
+        }
+
+        .ticket {
+            position: relative;
+            --ticket-shift: -16px
+        }
+
+        .ticket:nth-child(even) {
+            --ticket-shift: 16px
+        }
+
+        .ticket::before {
+            content: '';
+            position: absolute;
+            inset: 0 0 auto;
+            height: 5px;
+            background: repeating-linear-gradient(90deg, var(--red) 0 12px, transparent 12px 16px);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .section-head h2::before,
+        .bridge-label strong::after {
+            content: attr(data-glitch) / "";
+            position: absolute;
+            inset: 0;
+            color: var(--red);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .section-head h2::before {
+            text-shadow: none
+        }
+
+        .tickets .section-head h2::after {
+            color: #1c4c4a
+        }
+
+        .signal-strip::after {
+            inset-inline: 16px
+        }
+
+        .bridge-label strong::after {
+            color: var(--mint);
+            padding: inherit
+        }
+
+        .signal-bridge::before {
+            transform-origin: left
+        }
+
+        .signal-bridge::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+            background: repeating-linear-gradient(0deg, var(--red) 0 3px, transparent 3px 8px);
+            opacity: 0;
+        }
+
+        @media (max-width: 620px) {
+            .end-actions {
+                display: grid;
+                grid-template-columns: max-content minmax(0, 1fr);
+                gap: 14px 12px
+            }
+
+            .end-actions p {
+                grid-column: 1 / -1
+            }
+
+            .end-crt {
+                width: min(100%, 130px);
+                height: 52px
+            }
+
+            .section-head {
+                --heading-drift: 7px
+            }
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .section-head.visible h2 {
+                animation: heading-assemble .81s cubic-bezier(.18, .62, .23, 1) both
+            }
+
+            .section-head.visible h2::before {
+                animation: red-register .77s ease-out both
+            }
+
+            .section-head.visible h2::after {
+                animation: mint-register .79s ease-out both
+            }
+
+            .artist.visible {
+                animation: cover-unfold .83s var(--reveal-delay, 0ms) cubic-bezier(.18, .65, .24, 1) both
+            }
+
+            .slot.visible {
+                animation: row-unpack .65s var(--reveal-delay, 0ms) cubic-bezier(.22, .7, .28, 1) both
+            }
+
+            .slot.visible::after {
+                animation: log-trace .74s var(--reveal-delay, 0ms) ease-out both
+            }
+
+            .tickets.visible::before {
+                animation: ticket-sweep .91s ease-out both
+            }
+
+            .tickets.visible::after {
+                animation: splice-bar .76s .1s ease-out both
+            }
+
+            .ticket.visible {
+                animation: ticket-lock .73s var(--reveal-delay, 0ms) cubic-bezier(.23, .66, .23, 1) both
+            }
+
+            .ticket.visible::before {
+                animation: splice-bar .65s var(--reveal-delay, 0ms) ease-out both
+            }
+
+            .ticket.visible:focus-within {
+                animation: none
+            }
+
+            .signal-bridge.visible::before {
+                animation: red-wipe .87s cubic-bezier(.19, .74, .23, 1) both
+            }
+
+            .signal-bridge.visible::after {
+                animation: splice-bar .71s ease-out both
+            }
+
+            .signal-bridge.visible .bridge-trace {
+                animation: frame-assemble .93s .1s ease-out both
+            }
+
+            .signal-bridge.visible .bridge-label strong {
+                animation: bridge-decode .74s .12s cubic-bezier(.19, .67, .23, 1) both;
+            }
+
+            .signal-bridge.visible .bridge-label strong::after {
+                animation: mint-register .67s .15s ease-out both
+            }
+
+            :is(.monitor-art, .artist-art, .bridge-trace, .end-crt-raster) {
+                transition: filter .55s ease, transform .55s cubic-bezier(.22, .7, .3, 1);
+            }
+
+            .section-head::before {
+                transition: filter .55s ease
+            }
+
+            [data-signal="unstable"] .section-head::before,
+            [data-signal="unstable"] :is(.monitor-art, .artist-art, .bridge-trace, .end-crt-raster) {
+                filter: drop-shadow(-2px 0 rgba(145, 233, 223, .58)) drop-shadow(3px 0 rgba(160, 10, 23, .79));
+            }
+
+            [data-interruption="critical"] .signal-strip::after {
+                animation: transmission-cut .32s ease-out both
+            }
+
+            :is([data-transmission="ENDING"], [data-transmission="ENDED"]) :is(.signal-strip, .transmission-end)::after {
+                animation: transmission-cut .32s ease-out both;
+            }
+
+            :is([data-transmission="ENDING"], [data-transmission="ENDED"]) .end-title {
+                animation: end-decode .92s ease-out both
+            }
+
+            :is([data-transmission="ENDING"], [data-transmission="ENDED"]) .end-crt-raster {
+                animation: crt-collapse .72s .24s ease-in both
+            }
+
+            :is([data-transmission="ENDING"], [data-transmission="ENDED"]) .end-crt::after {
+                animation: crt-line .4s .56s ease-out both
+            }
+        }
+
+        @keyframes heading-assemble {
+            from {
+                clip-path: polygon(0 0, 20% 0, 20% 28%, 3% 28%, 3% 61%, 31% 61%, 31% 100%, 0 100%);
+                translate: calc(var(--heading-drift, 12px) * -1) 0;
+            }
+
+            39% {
+                clip-path: polygon(0 0, 67% 0, 67% 28%, 94% 28%, 94% 61%, 49% 61%, 49% 100%, 0 100%);
+                translate: var(--heading-drift, 12px) 0;
+            }
+
+            73% {
+                clip-path: polygon(0 0, 100% 0, 100% 28%, 100% 28%, 100% 61%, 100% 61%, 100% 100%, 0 100%);
+                translate: -2px 0;
+            }
+
+            to {
+                clip-path: none;
+                translate: none
+            }
+        }
+
+        @keyframes red-register {
+            from {
+                clip-path: inset(9% 0 69%);
+                translate: 13px 0;
+                opacity: .8
+            }
+
+            44% {
+                clip-path: inset(58% 0 22%);
+                translate: -8px 0;
+                opacity: .64
+            }
+
+            to {
+                clip-path: inset(70% 0 24%);
+                translate: none;
+                opacity: 0
+            }
+        }
+
+        @keyframes mint-register {
+            from {
+                clip-path: inset(46% 0 32%);
+                translate: -14px 0;
+                opacity: .78
+            }
+
+            43% {
+                clip-path: inset(19% 0 63%);
+                translate: 9px 0;
+                opacity: .7
+            }
+
+            to {
+                clip-path: inset(22% 0 69%);
+                translate: none;
+                opacity: 0
+            }
+        }
+
+        @keyframes cover-unfold {
+            from {
+                clip-path: polygon(0 3%, 81% 0, 33% 53%, 0 50%);
+                translate: 0 22px;
+                opacity: .68
+            }
+
+            46% {
+                clip-path: polygon(0 0, 98% 0, 87% 82%, 0 84%);
+                translate: 0 7px;
+                opacity: .91
+            }
+
+            80% {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+                translate: none;
+                opacity: 1
+            }
+
+            to {
+                clip-path: none;
+                translate: none;
+                opacity: 1
+            }
+        }
+
+        @keyframes row-unpack {
+            from {
+                clip-path: inset(0 86% 0 0);
+                translate: -12px 0
+            }
+
+            49% {
+                clip-path: inset(0 31% 0 0);
+                translate: 3px 0
+            }
+
+            83% {
+                clip-path: inset(0);
+                translate: none
+            }
+
+            to {
+                clip-path: none;
+                translate: none
+            }
+        }
+
+        @keyframes ticket-sweep {
+            from {
+                clip-path: polygon(0 0, 4% 0, 0 100%, 0 100%);
+                opacity: .95
+            }
+
+            54% {
+                clip-path: polygon(26% 0, 94% 0, 67% 100%, 0 100%);
+                opacity: .85
+            }
+
+            to {
+                clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+                opacity: 0
+            }
+        }
+
+        @keyframes ticket-lock {
+            from {
+                clip-path: inset(45% 0 47%);
+                translate: var(--ticket-shift) 14px
+            }
+
+            47% {
+                clip-path: inset(15% 0 12%);
+                translate: -3px 4px
+            }
+
+            81% {
+                clip-path: inset(-8px);
+                translate: none
+            }
+
+            to {
+                clip-path: none;
+                translate: none
+            }
+        }
+
+        @keyframes splice-bar {
+            from {
+                clip-path: inset(0 95% 0 0);
+                opacity: .72
+            }
+
+            48% {
+                clip-path: inset(0 12% 0 4%);
+                opacity: .65
+            }
+
+            to {
+                clip-path: inset(0 0 0 93%);
+                opacity: 0
+            }
+        }
+
+        @keyframes red-wipe {
+            from {
+                transform: scaleX(.025);
+                opacity: .68
+            }
+
+            61% {
+                transform: scaleX(.93);
+                opacity: 1
+            }
+
+            to {
+                transform: scaleX(1)
+            }
+        }
+
+        @keyframes bridge-decode {
+            from {
+                clip-path: inset(33% 82% 37% 0);
+                translate: -8px 0
+            }
+
+            31% {
+                clip-path: inset(7% 41% 17% 0);
+                translate: 6px 0
+            }
+
+            79% {
+                clip-path: inset(0);
+                translate: none
+            }
+
+            to {
+                clip-path: none;
+                translate: none
+            }
+        }
+
+        @keyframes end-decode {
+            from {
+                clip-path: polygon(0 4%, 77% 4%, 77% 26%, 33% 26%, 33% 71%, 55% 71%, 55% 93%, 0 93%);
+                translate: -9px 0;
+                opacity: .5
+            }
+
+            37% {
+                clip-path: polygon(0 1%, 97% 1%, 97% 26%, 60% 26%, 60% 71%, 96% 71%, 96% 98%, 0 98%);
+                translate: 7px 0;
+                opacity: .89
+            }
+
+            76% {
+                clip-path: polygon(0 0, 100% 0, 100% 26%, 100% 26%, 100% 71%, 100% 71%, 100% 100%, 0 100%);
+                translate: none;
+                opacity: 1
+            }
+
+            to {
+                clip-path: none;
+                translate: none;
+                opacity: 1
+            }
+        }
+
+        @keyframes crt-collapse {
+            from {
+                transform: scale(1);
+                opacity: 1
+            }
+
+            49% {
+                transform: scale(1, .07);
+                opacity: .9
+            }
+
+            70% {
+                transform: scale(.71, .024);
+                opacity: .76
+            }
+
+            to {
+                transform: scale(.02, .024);
+                opacity: 0
+            }
+        }
+
+        @keyframes crt-line {
+            from {
+                transform: scaleX(.91);
+                opacity: .78
+            }
+
+            to {
+                transform: scaleX(0);
+                opacity: 0
+            }
+        }
+
+        @media (max-height: 450px) and (orientation: landscape) {
+            .transmission-end {
+                align-items: end;
+                padding-block: 42px 15px
+            }
+
+            .end-marker {
+                margin-bottom: 10px
+            }
+
+            .end-title {
+                font-size: clamp(35px, 7.5vw, 78px);
+                margin-bottom: 14px
+            }
+
+            .end-actions {
+                display: flex;
+                gap: 10px 16px
+            }
+
+            .end-crt {
+                width: min(18vw, 180px);
+                height: 46px
+            }
+
+            .footer {
+                padding-block: 12px
+            }
+
+            .footer-inner {
+                flex-direction: row;
+                align-items: center;
+                gap: 12px
+            }
+
+            .footer strong {
+                font-size: 24px;
+                white-space: nowrap
+            }
+
+            .footer-inner>span {
+                flex: 1;
+                min-width: 0
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="top">
+        <div class="container nav"><a class="logo" href="#home" aria-label="NO SIGNAL, вернуться наверх">NO
+                SIGNAL<span>АНДЕГРАУНДНАЯ ЧАСТОТА</span></a><button class="menu-toggle" aria-label="Открыть меню"
+                aria-expanded="false" aria-controls="navlinks">МЕНЮ +</button>
+            <nav class="links" id="navlinks" aria-label="Основная навигация"><a href="#about">О фестивале</a><a
+                    href="#lineup">Артисты</a><a href="#schedule">Расписание</a><a href="#tickets">Билеты</a><a
+                    href="#contacts">Контакты</a></nav>
+        </div>
+        <div class="signal-strip">
+            <div class="container signal-console mono" data-signal="stable">
+                <span class="signal-label">SIGNAL: <b data-signal-label>STABLE</b></span>
+                <span class="signal-value" data-signal-level aria-hidden="true">96%</span>
+                <span class="signal-meter" role="meter" aria-label="Уровень сигнала" aria-valuemin="0"
+                    aria-valuemax="100" aria-valuenow="96" aria-valuetext="96%, STABLE">
+                    <i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i><i
+                        aria-hidden="true"></i><i aria-hidden="true"></i>
+                </span>
+                <span class="signal-channel" aria-hidden="true">RX–01 / CARRIER LEVEL</span>
+            </div>
+            <p class="link-phase mono" role="status"></p>
+        </div>
+    </header>
+    <main>
+        <section class="hero" id="home">
+            <div class="container hero-content">
+                <div class="mono eyebrow">Независимая звуковая трансляция / 2027</div>
+                <h1 aria-label="NO SIGNAL" tabindex="-1"><span>NO</span><span data-glitch="SIGNAL">SIGNAL</span></h1>
+                <figure class="signal-monitor" aria-hidden="true">
+                    <canvas class="monitor-art" data-art="monitor" width="640" height="640"></canvas>
+                    <p class="monitor-meta mono">RX–01 / CRT MONITOR</p>
+                    <p class="monitor-meta mono">SYNC // LOCKED</p>
+                </figure>
+                <div class="hero-bottom">
+                    <div class="hero-sub">ОТКЛЮЧИСЬ<br>ОТ РЕАЛЬНОСТИ<span style="color:var(--red)">_</span></div>
+                    <div class="hero-info">
+                        <p>Одна ночь за пределами привычных частот. Breakcore, Jungle, IDM и прекрасный распад цифрового
+                            порядка.</p><a class="btn btn-dark" href="#lineup">Смотреть артистов <span
+                                aria-hidden="true">↗</span></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="ticker" aria-hidden="true">
+            <div class="ticker-track">
+                <div class="ticker-group">
+                    <span>NO SIGNAL // BREAKCORE // JUNGLE // IDM // DRUM &amp; BASS // GLITCH // EXPERIMENTAL //
+                        17.07.2027 //</span>
+                    <span>NO SIGNAL // BREAKCORE // JUNGLE // IDM // DRUM &amp; BASS // GLITCH // EXPERIMENTAL //
+                        17.07.2027 //</span>
+                    <span>NO SIGNAL // BREAKCORE // JUNGLE // IDM // DRUM &amp; BASS // GLITCH // EXPERIMENTAL //
+                        17.07.2027 //</span>
+                </div>
+                <div class="ticker-group">
+                    <span>NO SIGNAL // BREAKCORE // JUNGLE // IDM // DRUM &amp; BASS // GLITCH // EXPERIMENTAL //
+                        17.07.2027 //</span>
+                    <span>NO SIGNAL // BREAKCORE // JUNGLE // IDM // DRUM &amp; BASS // GLITCH // EXPERIMENTAL //
+                        17.07.2027 //</span>
+                    <span>NO SIGNAL // BREAKCORE // JUNGLE // IDM // DRUM &amp; BASS // GLITCH // EXPERIMENTAL //
+                        17.07.2027 //</span>
+                </div>
+            </div>
+        </div>
+        <div class="signal-bridge reveal" aria-hidden="true">
+            <div class="container bridge-inner">
+                <div class="bridge-label mono">
+                    <span>RX–01 / FRAME SYNC</span>
+                    <strong data-glitch="СИГНАЛ ПРЕРВАН">СИГНАЛ ПРЕРВАН</strong>
+                    <span>01 / BEGIN TRANSMISSION</span>
+                </div>
+                <span class="bridge-trace"></span>
+            </div>
+        </div>
+        <section class="section" id="about">
+            <div class="container">
+                <div class="section-head reveal">
+                    <div>
+                        <div class="mono">[01] / Концепция трансляции</div>
+                        <h2 data-glitch="О НАС">О НАС</h2>
+                    </div>
+                    <div class="section-number mono">001—006</div>
+                </div>
+                <div class="about-grid">
+                    <p class="about-lead reveal">НЕ ПОБЕГ.<br><em>ДРУГАЯ</em><br>РЕАЛЬНОСТЬ.</p>
+                    <div class="about-copy reveal">
+                        <p>NO SIGNAL — вымышленный фестиваль на одну ночь для музыки, которая не вписывается в рамки.
+                            Ломаные ритмы, беспокойный бас, синтетические воспоминания и неожиданная тишина.</p>
+                        <p>Мы превращаем забытое индустриальное пространство в место встречи людей, звука и визуальных
+                            экспериментов. Никаких алгоритмов. Никаких идеальных шаблонов. Только момент здесь и сейчас.
+                        </p>
+                        <div class="tags"><span class="tag">BREAKCORE</span><span class="tag">JUNGLE</span><span
+                                class="tag">IDM</span><span class="tag">AMBIENT</span><span
+                                class="tag">EXPERIMENTAL</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="frequency-index" aria-label="Жанры фестиваля">
+            <div class="container">
+                <div class="frequency-caption mono" aria-hidden="true">
+                    <span>RX–01 // FREQUENCY INDEX</span><span>MODULATION / 05 CHANNELS</span>
+                </div>
+                <p class="frequency-field reveal">
+                    <span class="genre">BREAKCORE</span>
+                    <span class="genre">JUNGLE</span>
+                    <span class="genre genre-cut" data-glitch="IDM">IDM</span>
+                    <span class="genre">DRUM &amp; BASS</span>
+                    <span class="genre">GLITCH</span>
+                </p>
+            </div>
+        </section>
+        <div class="visual-band reveal" aria-hidden="true">
+            <p class="band-meta mono">BUFFER // 002</p>
+            <strong data-glitch="ERROR / BEAUTY">ERROR / BEAUTY</strong>
+            <p class="band-meta mono">FRAME DROPPED / 0x02</p>
+        </div>
+        <section class="section lineup" id="lineup">
+            <div class="container">
+                <div class="section-head reveal">
+                    <div>
+                        <div class="mono">[02] / Избранные частоты</div>
+                        <h2 data-glitch="АРТИСТЫ">АРТИСТЫ</h2>
+                    </div>
+                    <div class="section-number mono">06 АРТИСТОВ</div>
+                </div>
+                <div class="artists">
+                    <article class="artist reveal"><canvas class="artist-art" data-art="void" width="640" height="640"
+                            aria-hidden="true"></canvas><span class="art-slice" aria-hidden="true"></span><span
+                            class="mono">01 / ОСНОВНОЙ КАНАЛ</span>
+                        <div>
+                            <h3>VOID<br>PROTOCOL</h3>
+                            <p>Breakcore / Digital hardcore</p>
+                        </div>
+                    </article>
+                    <article class="artist reveal"><canvas class="artist-art" data-art="red" width="640" height="640"
+                            aria-hidden="true"></canvas><span class="art-slice" aria-hidden="true"></span><span
+                            class="mono">02 / ОСНОВНОЙ КАНАЛ</span>
+                        <div>
+                            <h3>RED<br>STATIC</h3>
+                            <p>Jungle / Footwork</p>
+                        </div>
+                    </article>
+                    <article class="artist reveal"><canvas class="artist-art" data-art="null" width="640" height="640"
+                            aria-hidden="true"></canvas><span class="art-slice" aria-hidden="true"></span><span
+                            class="mono">03 / ОСНОВНОЙ КАНАЛ</span>
+                        <div>
+                            <h3>NULL<br>GARDEN</h3>
+                            <p>IDM / Glitch</p>
+                        </div>
+                    </article>
+                    <article class="artist reveal"><canvas class="artist-art" data-art="soft" width="640" height="640"
+                            aria-hidden="true"></canvas><span class="art-slice" aria-hidden="true"></span><span
+                            class="mono">04 / ДОП. КАНАЛ</span>
+                        <div>
+                            <h3>SOFT<br>FAILURE</h3>
+                            <p>Ambient / Deconstructed club</p>
+                        </div>
+                    </article>
+                    <article class="artist reveal"><canvas class="artist-art" data-art="memory" width="640" height="640"
+                            aria-hidden="true"></canvas><span class="art-slice" aria-hidden="true"></span><span
+                            class="mono">05 / ДОП. КАНАЛ</span>
+                        <div>
+                            <h3>MEMORY<br>LEAK</h3>
+                            <p>Drill 'n' bass / Experimental</p>
+                        </div>
+                    </article>
+                    <article class="artist reveal"><canvas class="artist-art" data-art="pale" width="640" height="640"
+                            aria-hidden="true"></canvas><span class="art-slice" aria-hidden="true"></span><span
+                            class="mono">06 / ДОП. КАНАЛ</span>
+                        <div>
+                            <h3>PALE<br>CIRCUIT</h3>
+                            <p>Leftfield / Jungle</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <div class="section-seam reveal" aria-hidden="true">
+            <div class="container"><span class="mono">03 // SIGNAL LOG</span></div>
+        </div>
+        <section class="section schedule" id="schedule">
+            <div class="container">
+                <div class="section-head reveal">
+                    <div>
+                        <div class="mono">[03] / Хронология системы</div>
+                        <h2 data-glitch="РАСПИСАНИЕ">РАСПИСАНИЕ</h2>
+                    </div>
+                    <div class="section-number mono">17 ИЮЛЯ 2027</div>
+                </div>
+                <div class="schedule-list">
+                    <div class="slot"><time datetime="2027-07-17T19:00">19:00</time><strong>Открытие дверей / Проверка
+                            сигнала</strong><span class="mono">Вход</span></div>
+                    <div class="slot"><time datetime="2027-07-17T20:00">20:00</time><strong>Soft Failure</strong><span
+                            class="mono">Ambient</span></div>
+                    <div class="slot"><time datetime="2027-07-17T21:00">21:00</time><strong>Pale Circuit</strong><span
+                            class="mono">Jungle</span></div>
+                    <div class="slot"><time datetime="2027-07-17T22:00">22:00</time><strong>Null Garden</strong><span
+                            class="mono">IDM / Glitch</span></div>
+                    <div class="slot"><time datetime="2027-07-17T23:00">23:00</time><strong>Memory Leak</strong><span
+                            class="mono">Drill 'n' bass</span></div>
+                    <div class="slot"><time datetime="2027-07-18T00:00">00:00</time><strong>Red Static</strong><span
+                            class="mono">Jungle / Footwork</span></div>
+                    <div class="slot"><time datetime="2027-07-18T01:00">01:00</time><strong>Void Protocol</strong><span
+                            class="mono">Breakcore</span></div>
+                    <div class="slot"><time datetime="2027-07-18T02:00">02:00</time><strong>Конец
+                            трансляции</strong><span class="mono">Вне сети</span></div>
+                </div>
+            </div>
+        </section>
+        <div class="section-seam section-seam--ticket reveal" aria-hidden="true">
+            <div class="container"><span class="mono">04 // ACCESS CONTROL</span></div>
+        </div>
+        <section class="section tickets" id="tickets">
+            <div class="container">
+                <div class="section-head reveal">
+                    <div>
+                        <div class="mono">[04] / Уровни доступа</div>
+                        <h2 data-glitch="БИЛЕТЫ">БИЛЕТЫ</h2>
+                    </div>
+                    <div class="section-number mono">ДЕМОВЕРСИЯ</div>
+                </div>
+                <div class="ticket-grid">
+                    <article class="ticket reveal">
+                        <div class="mono">01 / Стандарт</div>
+                        <h3 id="ticket-general-title">ОБЫЧНЫЙ</h3><data class="price" value="1900">1 900 ₽</data>
+                        <p>Доступ ко всем выступлениям и визуальным инсталляциям.</p><button type="button" class="btn"
+                            data-buy="general" aria-describedby="ticket-general-title" aria-haspopup="dialog"
+                            aria-controls="checkout-dialog" disabled>Купить билет <span
+                                aria-hidden="true">↗</span></button>
+                    </article>
+                    <article class="ticket featured reveal">
+                        <div class="mono">02 / Расширенный</div>
+                        <h3 id="ticket-full-title">ПОЛНЫЙ ДОСТУП</h3><data class="price" value="2900">2 900 ₽</data>
+                        <p>Вход на фестиваль, приоритетный проход и вымышленный коллекционный постер.</p><button
+                            type="button" class="btn btn-mint" data-buy="full" aria-describedby="ticket-full-title"
+                            aria-haspopup="dialog" aria-controls="checkout-dialog" disabled>Купить билет <span
+                                aria-hidden="true">↗</span></button>
+                    </article>
+                    <article class="ticket reveal">
+                        <div class="mono">03 / Поддержка</div>
+                        <h3 id="ticket-support-title">ПОДДЕРЖКА</h3><data class="price" value="4500">4 500 ₽</data>
+                        <p>Всё из категории «Полный доступ» и вымышленный авторский мерч.</p><button type="button"
+                            class="btn" data-buy="support" aria-describedby="ticket-support-title"
+                            aria-haspopup="dialog" aria-controls="checkout-dialog" disabled>Купить билет <span
+                                aria-hidden="true">↗</span></button>
+                    </article>
+                </div>
+                <p class="ticket-note mono">Концептуальный проект. Цены и категории билетов вымышлены. Доступен
+                    демонстрационный заказ без оплаты и бронирования.</p>
+            </div>
+        </section>
+        <section class="section contacts" id="contacts">
+            <div class="container">
+                <div class="section-head reveal">
+                    <div>
+                        <div class="mono">[05] / Найди свою частоту</div>
+                        <h2 data-glitch="НЕ ИЩИ">НЕ ИЩИ</h2>
+                    </div>
+                    <div class="section-number mono">СВЯЗЬ</div>
+                </div>
+                <div class="contact-grid">
+                    <div class="reveal">
+                        <h3>ОДНА НОЧЬ.<br>ОДНА ЧАСТОТА.</h3>
+                        <p>17 июля 2027 · 19:00–02:00<br>Сектор 0 / Вымышленный индустриальный зал<br>Вымышленный район,
+                            Санкт-Петербург</p>
+                        <p class="mono">Место и мероприятие вымышлены. Не пытайтесь приехать по этому адресу.</p>
+                    </div>
+                    <div class="reveal">
+                        <h3>ПОДКЛЮЧИСЬ / ОТКЛЮЧИСЬ</h3>
+                        <p>По вопросам проекта и сотрудничества:<br><a href="mailto:hello@nosignal.example"
+                                style="color:var(--mint);text-decoration:underline">hello@nosignal.example</a></p>
+                        <div class="social"><a
+                                href="mailto:hello@nosignal.example?subject=NO%20SIGNAL%20%E2%80%94%20Social%20updates">Новости
+                                проекта ↗</a><a href="#lineup">Артисты ↗</a><a href="#home">Наверх ↑</a></div>
+                        <p class="mono">Ссылка на новости открывает демонстрационное письмо. Реальных страниц в соцсетях
+                            нет.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="transmission-end" id="transmission-ended" aria-labelledby="transmission-title">
+            <div class="container end-copy reveal">
+                <p class="end-marker mono" aria-hidden="true">RX–01 / END OF STREAM</p>
+                <h2 class="end-title" id="transmission-title"><span>TRANSMISSION</span> <span>ENDED</span></h2>
+                <div class="end-actions">
+                    <p class="mono" aria-hidden="true">КАНАЛ ЗАКРЫТ // FRAME 000</p>
+                    <a class="btn btn-mint" id="reconnect" href="#home">RECONNECT <span aria-hidden="true">↑</span></a>
+                    <div class="end-crt" aria-hidden="true">
+                        <div class="end-crt-raster"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="container footer-inner"><strong>NO SIGNAL®</strong><span class="mono">© 2027 / Концепт вымышленного
+                фестиваля / Билеты не продаются</span><a class="mono" href="#home">К началу ↑</a></div>
+    </footer>
+    <dialog id="checkout-dialog" class="checkout-dialog" aria-labelledby="checkout-title"
+        aria-describedby="checkout-mode">
+        <div class="checkout-panel">
+            <header class="checkout-header">
+                <p class="checkout-marker mono" aria-hidden="true">NS // ORDER TERMINAL</p>
+                <h2 id="checkout-title">NO SIGNAL</h2>
+                <p id="checkout-mode" class="checkout-mode"><strong>Демонстрационный режим.</strong> Без оплаты и
+                    бронирования.</p>
+                <button type="button" class="checkout-close" aria-label="Закрыть окно">×</button>
+            </header>
+            <form class="checkout-form" method="dialog" autocomplete="off">
+                <div class="checkout-fields">
+                    <div class="checkout-field"><label for="checkout-tier">Тариф</label><select id="checkout-tier"
+                            required autofocus></select></div>
+                    <div class="checkout-field"><label for="checkout-count">Количество</label>
+                        <select id="checkout-count" required>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="checkout-field"><label for="checkout-name">Имя</label><input id="checkout-name" type="text"
+                        required pattern=".*\S.*" maxlength="100"></div>
+                <div class="checkout-field"><label for="checkout-email">Электронная почта</label><input
+                        id="checkout-email" type="email" required maxlength="254"></div>
+                <div class="checkout-total">
+                    <span class="mono">Итого</span>
+                    <output id="checkout-total" for="checkout-tier checkout-count" aria-atomic="true"></output>
+                </div>
+                <button type="submit" class="btn btn-mint">Подтвердить демо-заказ <span
+                        aria-hidden="true">↗</span></button>
+            </form>
+            <div class="checkout-confirmation" hidden>
+                <h3 tabindex="-1">Демонстрационный заказ оформлен. Оплата не производилась</h3>
+                <button type="button" class="btn btn-mint">Готово</button>
+            </div>
+        </div>
+    </dialog>
+    <script>
+        const toggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('.links');
+
+        function setMenu(open) {
+            nav.classList.toggle('open', open);
+            toggle.setAttribute('aria-expanded', String(open));
+            toggle.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
+            toggle.textContent = open ? 'ЗАКРЫТЬ −' : 'МЕНЮ +';
+        }
+
+        toggle.addEventListener('click', () => setMenu(!nav.classList.contains('open')));
+        nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMenu(false)));
+        nav.closest('.nav').setAttribute('data-menu-ready', '');
+
+        function setupCheckout() {
+            const dialog = document.querySelector('#checkout-dialog');
+            if (typeof dialog.showModal !== 'function') return;
+
+            const form = dialog.querySelector('form');
+            const tier = dialog.querySelector('#checkout-tier');
+            const quantity = dialog.querySelector('#checkout-count');
+            const total = dialog.querySelector('#checkout-total');
+            const confirmation = dialog.querySelector('.checkout-confirmation');
+            const buyButtons = [...document.querySelectorAll('[data-buy]')];
+            const prices = new Map();
+            const formatPrice = new Intl.NumberFormat('ru-RU', {
+                style: 'currency', currency: 'RUB', maximumFractionDigits: 0
+            });
+            const root = document.documentElement;
+            let opener;
+            let pointerDownOnBackdrop = false;
+
+            for (const button of buyButtons) {
+                const card = button.closest('.ticket');
+                const price = Number(card.querySelector('.price').value);
+                const title = card.querySelector('h3').textContent.trim();
+                prices.set(button.dataset.buy, price);
+                tier.add(new Option(title + ' / ' + formatPrice.format(price), button.dataset.buy));
+            }
+
+            function updateTotal() {
+                total.value = formatPrice.format(prices.get(tier.value) * Number(quantity.value));
+            }
+
+            function openCheckout(button) {
+                if (dialog.open) return;
+                opener = button;
+                pointerDownOnBackdrop = false;
+                confirmation.hidden = true;
+                form.hidden = false;
+                form.reset();
+                tier.value = button.dataset.buy;
+                updateTotal();
+                root.style.setProperty('--checkout-gutter', (window.innerWidth - root.clientWidth) + 'px');
+                root.classList.add('checkout-open');
+                dialog.showModal();
+                dialog.scrollTop = 0;
+                tier.focus({ preventScroll: true });
+            }
+
+            dialog.querySelector('.checkout-close').addEventListener('click', () => dialog.close());
+            confirmation.querySelector('button').addEventListener('click', () => dialog.close());
+            dialog.addEventListener('pointerdown', event => {
+                pointerDownOnBackdrop = event.target === dialog;
+            });
+            dialog.addEventListener('click', event => {
+                if (pointerDownOnBackdrop && event.target === dialog) dialog.close();
+                pointerDownOnBackdrop = false;
+            });
+            dialog.addEventListener('close', () => {
+                root.classList.remove('checkout-open');
+                root.style.removeProperty('--checkout-gutter');
+                form.reset();
+                opener?.focus({ preventScroll: true });
+                opener = null;
+            });
+
+            dialog.addEventListener('keydown', event => {
+                if (event.key !== 'Tab') return;
+                const focusable = [...dialog.querySelectorAll('button, select, input')]
+                    .filter(control => !control.disabled && control.getClientRects().length > 0);
+                const first = focusable[0];
+                const last = focusable.at(-1);
+                if (event.shiftKey && document.activeElement === first) {
+                    event.preventDefault();
+                    last.focus();
+                } else if (!event.shiftKey && document.activeElement === last) {
+                    event.preventDefault();
+                    first.focus();
+                }
+            });
+
+            tier.addEventListener('change', updateTotal);
+            quantity.addEventListener('change', updateTotal);
+            form.addEventListener('submit', event => {
+                event.preventDefault();
+                form.reset();
+                form.hidden = true;
+                confirmation.hidden = false;
+                dialog.scrollTop = 0;
+                confirmation.querySelector('h3').focus();
+            });
+
+            for (const button of buyButtons) {
+                button.addEventListener('click', () => openCheckout(button));
+                button.disabled = false;
+            }
+        }
+
+        function setupReveals() {
+            if (typeof IntersectionObserver !== 'function') return;
+            const motion = matchMedia('(prefers-reduced-motion: reduce)');
+            const targets = [...document.querySelectorAll('.reveal:not(.section-head), .section-head h2, .slot, .tickets')];
+            const revealFor = target => target.closest('.section-head') || target;
+            let paused = false;
+            const observer = new IntersectionObserver(entries => {
+                if (paused || motion.matches) return;
+                const entering = entries.filter(entry => entry.isIntersecting)
+                    .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top ||
+                        a.boundingClientRect.left - b.boundingClientRect.left);
+                const delays = { artist: 115, slot: 70, ticket: 115 };
+                const sequence = { artist: 0, slot: 0, ticket: 0 };
+                for (const { target } of entering) {
+                    observer.unobserve(target);
+                    const reveal = revealFor(target);
+                    const group = Object.keys(delays).find(name => reveal.classList.contains(name));
+                    if (group) reveal.style.setProperty('--reveal-delay', sequence[group]++ * delays[group] + 'ms');
+                    reveal.classList.add('visible');
+                }
+            }, { threshold: .13, rootMargin: '0px 0px -16px 0px' });
+
+            function pause() {
+                paused = true;
+                observer.takeRecords();
+                observer.disconnect();
+            }
+
+            function resume(replay = false) {
+                paused = false;
+                for (const target of targets) {
+                    const reveal = revealFor(target);
+                    if (replay) {
+                        reveal.classList.remove('visible');
+                        reveal.style.removeProperty('--reveal-delay');
+                    }
+                    if (!motion.matches && !reveal.classList.contains('visible')) observer.observe(target);
+                }
+            }
+
+            motion.addEventListener('change', () => {
+                if (paused) return;
+                observer.takeRecords();
+                observer.disconnect();
+                resume();
+            });
+            resume();
+            return { pause, resume };
+        }
+
+        function setupSignal(reveals) {
+            const root = document.documentElement;
+            const readout = document.querySelector('.signal-console');
+            const label = readout.querySelector('[data-signal-label]');
+            const percent = readout.querySelector('[data-signal-level]');
+            const meter = readout.querySelector('.signal-meter');
+            const phaseLabel = document.querySelector('.link-phase');
+            const reconnect = document.querySelector('#reconnect');
+            const ending = document.querySelector('#transmission-ended');
+            const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+            const home = { level: 96, duration: 1060, recovery: true };
+            const profiles = {
+                home: [home],
+                about: [{ level: 63, duration: 760 }, { hold: 630 }, { level: 75, duration: 920 }],
+                lineup: [{ level: 27, duration: 880 }, { hold: 520 }, { level: 51, duration: 900 }],
+                schedule: [{ level: 91, duration: 1260, recovery: true }],
+                tickets: [{ level: 75, duration: 960 }],
+                contacts: [{ level: 33, duration: 1510 }]
+            };
+            const sections = [...document.querySelectorAll('main > section[id]')].filter(section => profiles[section.id]);
+            const ACTIVE = 'ACTIVE';
+            const ENDING = 'ENDING';
+            const ENDED = 'ENDED';
+            const RECONNECTING = 'RECONNECTING';
+            const endEntry = .12;
+            const endExit = .08;
+            let level = home.level;
+            let displayedLevel = level;
+            let frame;
+            let stepTimer;
+            let interruptionTimer;
+            let resizeFrame;
+            let observer;
+            let region = 'home';
+            let probe = 0;
+            let phase = ACTIVE;
+            let endVisible = false;
+
+            function setPhase(next) {
+                phase = next;
+                root.dataset.transmission = next;
+            }
+
+            function interrupt(mark) {
+                if (reducedMotion.matches) return;
+                clearTimeout(interruptionTimer);
+                root.dataset.interruption = mark;
+                interruptionTimer = setTimeout(() => delete root.dataset.interruption, 333);
+            }
+
+            function render(value, recovering = false) {
+                level = value;
+                const rounded = value === 0 ? 0 : Math.max(1, Math.round(value));
+                const state = recovering ? 'reconnecting' : rounded >= 70 ? 'stable' :
+                    rounded >= 35 ? 'unstable' : rounded > 0 ? 'critical' : 'lost';
+                const levelChanged = rounded !== displayedLevel;
+                const statusChanged = readout.dataset.signal !== state;
+                if (statusChanged) {
+                    root.dataset.signal = state;
+                    readout.dataset.signal = state;
+                    label.textContent = state.toUpperCase();
+                    if (state === 'critical' && phase === ACTIVE) {
+                        interrupt(region === 'lineup' ? 'lineup' : 'critical');
+                    }
+                }
+                if (levelChanged) {
+                    displayedLevel = rounded;
+                    readout.style.setProperty('--level', rounded);
+                    percent.textContent = rounded + '%';
+                    meter.setAttribute('aria-valuenow', rounded);
+                }
+                if (statusChanged || levelChanged) {
+                    meter.setAttribute('aria-valuetext', rounded + '%, ' + state.toUpperCase());
+                }
+            }
+
+            function play(steps, done, forcedRecovery = false) {
+                cancelAnimationFrame(frame);
+                clearTimeout(stepTimer);
+                clearTimeout(interruptionTimer);
+                delete root.dataset.interruption;
+                let index = 0;
+
+                function next() {
+                    const step = steps[index++];
+                    if (!step) {
+                        done?.();
+                        return;
+                    }
+                    if (step.message) phaseLabel.textContent = step.message;
+                    if (step.hold) {
+                        stepTimer = setTimeout(next, step.hold);
+                        return;
+                    }
+                    const start = level;
+                    const recovering = forcedRecovery || (step.recovery && start < 70) ||
+                        (start === 0 && step.level > 0);
+                    function finish() {
+                        render(step.level);
+                        next();
+                    }
+                    if (reducedMotion.matches || start === step.level) {
+                        if (recovering) {
+                            render(start, true);
+                            stepTimer = setTimeout(finish, 250);
+                        } else {
+                            finish();
+                        }
+                        return;
+                    }
+                    const started = performance.now();
+                    render(start, recovering);
+                    function update(time) {
+                        const progress = Math.min(1, Math.max(0, (time - started) / step.duration));
+                        if (progress === 1 || reducedMotion.matches) {
+                            finish();
+                            return;
+                        }
+                        const eased = progress * progress * (3 - 2 * progress);
+                        render(start + (step.level - start) * eased, recovering);
+                        frame = requestAnimationFrame(update);
+                    }
+                    frame = requestAnimationFrame(update);
+                }
+                next();
+            }
+
+            function pageRegion() {
+                for (let index = sections.length - 1; index >= 0; index--) {
+                    if (sections[index].getBoundingClientRect().top <= probe + 1) return sections[index].id;
+                }
+                return 'home';
+            }
+
+            function updateRegion(force = false) {
+                if (phase === RECONNECTING) return;
+
+                if (endVisible) {
+                    if (phase !== ACTIVE) return;
+                    setPhase(ENDING);
+                    play([{ level: 0, duration: 1000 }], () => setPhase(ENDED));
+                    return;
+                }
+
+                if (phase === ENDING || phase === ENDED) {
+                    setPhase(ACTIVE);
+                    force = true;
+                }
+                const id = pageRegion();
+                if (!force && id === region) return;
+                region = id;
+                play(profiles[id]);
+            }
+
+            function finishReturn() {
+                if (phase !== RECONNECTING) return;
+                setPhase(ACTIVE);
+                phaseLabel.textContent = '';
+                reveals?.resume(window.scrollY <= 1);
+                updateRegion(true);
+            }
+
+            function interruptReturn(event) {
+                if (phase !== RECONNECTING) return;
+                if (event.type === 'keydown' && !['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(event.key)) return;
+                window.scrollTo({ top: window.scrollY, behavior: 'instant' });
+                finishReturn();
+            }
+
+            function watchSections() {
+                observer?.disconnect();
+                const height = root.clientHeight;
+                probe = Math.floor(height * .47);
+                observer = new IntersectionObserver(() => updateRegion(), {
+                    rootMargin: (-probe) + 'px 0px ' + (probe + 1 - height) + 'px 0px'
+                });
+                sections.forEach(section => observer.observe(section));
+            }
+
+            root.dataset.signal = 'stable';
+            setPhase(ACTIVE);
+            if (typeof IntersectionObserver === 'function') {
+                const endObserver = new IntersectionObserver(entries => {
+                    const entry = entries.at(-1);
+                    // Separate thresholds avoid restarting near the viewport edge.
+                    endVisible = entry.intersectionRatio >= (endVisible ? endExit : endEntry);
+                    updateRegion();
+                }, { threshold: [endExit, endEntry] });
+                endObserver.observe(ending);
+                watchSections();
+                window.addEventListener('resize', () => {
+                    cancelAnimationFrame(resizeFrame);
+                    resizeFrame = requestAnimationFrame(watchSections);
+                });
+            }
+
+            reconnect.addEventListener('click', event => {
+                if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.altKey || event.shiftKey) return;
+                event.preventDefault();
+                if (phase === RECONNECTING) return;
+                reveals?.pause();
+                setPhase(RECONNECTING);
+                render(level, true);
+                play([
+                    { hold: 280, message: 'INITIALIZING' },
+                    { ...home, message: 'SEARCHING FOR SIGNAL' },
+                    { hold: 530, message: 'CONNECTED' }
+                ], finishReturn, true);
+                history.replaceState(history.state, '', '#home');
+                document.querySelector('#home h1').focus({ preventScroll: true });
+                window.scrollTo({ top: 0, behavior: reducedMotion.matches ? 'instant' : 'smooth' });
+            });
+            window.addEventListener('wheel', interruptReturn, { passive: true });
+            window.addEventListener('touchmove', interruptReturn, { passive: true });
+            window.addEventListener('keydown', interruptReturn);
+        }
+
+        setupCheckout();
+        setupSignal(setupReveals());
+
+        function drawArtwork() {
+            const mint = '#91E9DF';
+            const pale = '#E0F7EC';
+            const red = '#A00A17';
+            const dark = '#171013';
+            const size = 640;
+            const turn = Math.PI * 2;
+
+            function trace(ctx, samples, point) {
+                ctx.beginPath();
+                for (let i = 0; i <= samples; i++) {
+                    const [x, y] = point(i / samples);
+                    if (i === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+            }
+
+            function channel(ctx, color, opacity, width) {
+                ctx.strokeStyle = color;
+                ctx.fillStyle = color;
+                ctx.globalAlpha = opacity;
+                ctx.lineWidth = width;
+            }
+
+            function register(ctx, x, y) {
+                ctx.fillRect(x - 8, y, 17, 1);
+                ctx.fillRect(x, y - 8, 1, 17);
+            }
+
+            function screen(ctx) {
+                channel(ctx, mint, .24, 1);
+                for (const radius of [93, 151, 212, 271]) {
+                    ctx.beginPath();
+                    ctx.arc(372, 307, radius, 0, turn);
+                    ctx.stroke();
+                }
+                ctx.fillRect(34, 307, 572, 1);
+                ctx.fillRect(372, 69, 1, 490);
+                for (let i = 0; i < 33; i++) ctx.fillRect(47 + i * 17, 459, 1, i % 4 === 0 ? 19 : 9);
+
+                for (const [color, dx] of [[red, 11], [mint, 0]]) {
+                    for (let i = 0; i < 51; i++) {
+                        channel(ctx, color, i % 8 === 0 ? .85 : .22, i % 8 === 0 ? 2.4 : 1);
+                        trace(ctx, 180, progress => {
+                            const angle = progress * turn;
+                            const phase = i * .057;
+                            const pulse = 1 + .19 * Math.sin(6 * angle - phase * 2);
+                            return [
+                                367 + dx + (205 - i * 1.7) * pulse * Math.cos(angle + .18 * Math.sin(4 * angle + phase)),
+                                300 + (168 - i * 1.6) * pulse * Math.sin(angle) + 54 * Math.sin(3 * angle + phase)
+                            ];
+                        });
+                    }
+                }
+                channel(ctx, pale, .86, 2);
+                trace(ctx, 320, t => {
+                    const envelope = Math.exp(-Math.pow((t - .59) * 7, 2));
+                    return [26 + 585 * t, 306 + 81 * envelope * Math.sin(215 * t) * Math.cos(91 * t)];
+                });
+            }
+
+            function voidCover(ctx) {
+                ctx.translate(315, 296);
+                ctx.rotate(-.33);
+                function torus(theta, phi) {
+                    const radius = 167 + 66 * Math.cos(phi);
+                    return [radius * Math.cos(theta), radius * Math.sin(theta) * .62 + 66 * Math.sin(phi) * .83];
+                }
+                for (const [color, shift] of [[red, 13], [mint, 0]]) {
+                    ctx.translate(shift, 0);
+                    for (let i = 0; i < 29; i++) {
+                        channel(ctx, color, i % 5 === 0 ? .9 : .48, i % 5 === 0 ? 2.5 : 1);
+                        trace(ctx, 112, t => torus(t * turn, i / 29 * turn));
+                    }
+                    ctx.translate(-shift, 0);
+                }
+                channel(ctx, pale, .58, 1.6);
+                for (let i = 0; i < 51; i++) trace(ctx, 35, t => torus(i / 51 * turn, t * turn));
+            }
+
+            function redCover(ctx) {
+                ctx.translate(298, 277);
+                ctx.rotate(-.31);
+                for (let i = 0; i < 16; i++) {
+                    const y = i * 17 - 136;
+                    const edge = 157 + 47 * Math.cos(i * .51);
+                    const lead = -edge + (i % 3) * 26;
+                    channel(ctx, i % 3 === 1 ? red : dark, .9, 1);
+                    ctx.fillRect(lead - 15, y + 5, edge * 2, 23);
+                    channel(ctx, i % 4 === 0 ? pale : mint, i % 3 === 0 ? .94 : .75, 1);
+                    ctx.fillRect(lead, y, edge * 2, i % 4 === 2 ? 6 : 11);
+                    channel(ctx, red, .86, 1);
+                    ctx.fillRect(56 + Math.sin(i * .56) * 112, y, 37, 16);
+                }
+                channel(ctx, pale, .63, 1);
+                for (let i = 0; i < 61; i++) ctx.fillRect(-193 + i * 6, 153, 2, 24 + (i % 9) * 5);
+            }
+
+            function nullCover(ctx) {
+                function terrain(x, y) {
+                    const depth = .53 + y * .59;
+                    const crest = 79 * Math.sin(x * 9 + y * 7) * Math.sin(y * 6);
+                    return [325 + (x - .5) * 560 * depth, 85 + y * 363 + crest];
+                }
+                for (let i = 0; i <= 36; i++) {
+                    channel(ctx, i % 8 === 0 ? pale : mint, i % 5 === 0 ? .95 : .39, i % 5 === 0 ? 2.4 : 1);
+                    trace(ctx, 84, t => terrain(t, i / 36));
+                    channel(ctx, i % 8 === 0 ? red : mint, .53, 1.3);
+                    trace(ctx, 84, t => terrain(i / 36, t));
+                }
+                channel(ctx, red, .84, 4);
+                trace(ctx, 120, t => terrain(t, .63));
+            }
+
+            function softCover(ctx) {
+                ctx.translate(291, 285);
+                ctx.rotate(.63);
+                ctx.beginPath();
+                ctx.moveTo(-233, -156);
+                ctx.lineTo(117, -156);
+                ctx.lineTo(117, -99);
+                ctx.lineTo(198, -99);
+                ctx.lineTo(198, 127);
+                ctx.lineTo(-129, 127);
+                ctx.lineTo(-129, 180);
+                ctx.lineTo(-233, 180);
+                ctx.closePath();
+                channel(ctx, dark, .91, 1);
+                ctx.fill();
+                ctx.clip();
+                for (let i = 0; i < 54; i++) {
+                    channel(ctx, i % 7 === 0 ? red : pale, i % 4 === 0 ? .9 : .47, 1 + i % 4);
+                    trace(ctx, 60, t => [-250 + t * 490, i * 7 - 183 + Math.sin(t * 11 + i * .126) * 42]);
+                }
+                ctx.rotate(-.46);
+                for (let i = 0; i < 23; i++) {
+                    channel(ctx, i % 3 === 0 ? pale : mint, .62, 1);
+                    ctx.fillRect(-251 + i * 22, -231, i % 3 === 0 ? 8 : 4, 479);
+                }
+            }
+
+            function memoryCover(ctx) {
+                ctx.translate(320, 268);
+                ctx.rotate(-.21);
+                for (let i = 0; i < 33; i++) {
+                    const x = (i - 16) * 14;
+                    const height = 92 + 162 * Math.abs(Math.sin(i * .71) * Math.cos(i * .14));
+                    const y = -height * .49 + Math.sin(i * .29) * 32;
+                    channel(ctx, red, .83, 1);
+                    ctx.fillRect(x + 6, y + 15, 12, height);
+                    channel(ctx, i % 4 === 2 ? pale : mint, .82, 1);
+                    ctx.fillRect(x, y, 9, height);
+                    channel(ctx, dark, .85, 1);
+                    for (let j = y + 8; j < y + height; j += 13) ctx.fillRect(x, j, 10, 2);
+                }
+                channel(ctx, pale, .84, 3);
+                trace(ctx, 180, t => [-246 + 492 * t, 39 * Math.sin(t * 44) * Math.cos(t * 17) + 17]);
+            }
+
+            function paleCover(ctx) {
+                ctx.translate(343, 274);
+                ctx.rotate(.24);
+                for (let i = 0; i < 22; i++) {
+                    const radius = 229 - i * 8.4;
+                    const phase = i * .16;
+                    channel(ctx, i % 5 === 0 ? red : i % 3 === 0 ? pale : mint, .87, 1 + i % 5);
+                    trace(ctx, 5, t => {
+                        const a = t * turn + phase;
+                        return [Math.cos(a) * radius - i * 3.7, Math.sin(a) * radius * .83 + i * 2];
+                    });
+                }
+                channel(ctx, pale, .62, 1.25);
+                for (let i = 0; i < 9; i++) {
+                    const y = i * 27 - 93;
+                    trace(ctx, 3, t => [[-267, -151, -119, 173][Math.round(t * 3)], [y + 57, y + 57, y, y][Math.round(t * 3)]]);
+                }
+            }
+
+            function signalMarks(ctx, seed) {
+                const random = () => {
+                    seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+                    return seed / 4294967296;
+                };
+                channel(ctx, mint, .28, 1);
+                [[45, 142], [570, 124], [44, 470], [591, 439]].forEach(([x, y]) => register(ctx, x, y));
+                ctx.fillRect(44, 145, 1, 190);
+                ctx.fillRect(45, 470, 131, 1);
+                ctx.fillRect(472, 124, 100, 1);
+                ctx.fillRect(590, 344, 1, 96);
+
+                for (let i = 0; i < 1800; i++) {
+                    const x = Math.floor(random() * size);
+                    const y = Math.floor(random() * size);
+                    channel(ctx, i % 3 === 0 ? dark : pale, random() * .25, 1);
+                    ctx.fillRect(x, y, i % 39 === 0 ? 7 : 1, 1);
+                }
+                for (let i = 0; i < 10; i++) {
+                    const x = Math.round(33 + random() * 310);
+                    const y = Math.round(124 + random() * 270);
+                    const width = Math.floor(55 + random() * 170);
+                    const height = 2 + Math.floor(random() * 10);
+                    ctx.globalAlpha = .76;
+                    ctx.drawImage(ctx.canvas, x, y, width, height, x + (i % 2 ? 15 : -20), y + 3, width, height);
+                    channel(ctx, i % 3 ? red : pale, .56, 1);
+                    ctx.fillRect(x, y, width * .3, 2);
+                }
+            }
+
+            const plates = {
+                monitor: screen, void: voidCover, red: redCover, null: nullCover,
+                soft: softCover, memory: memoryCover, pale: paleCover
+            };
+            document.querySelectorAll('canvas[data-art]').forEach((canvas, index) => {
+                const ctx = canvas.getContext('2d');
+                if (!ctx) return;
+                ctx.save();
+                plates[canvas.dataset.art](ctx);
+                ctx.restore();
+                signalMarks(ctx, 271 + 17 * index);
+            });
+        }
+
+        drawArtwork();
+    </script>
+</body>
+
+</html>
